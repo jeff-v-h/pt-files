@@ -40,10 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="web.config" CopyToPublishDirectory="Always" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
