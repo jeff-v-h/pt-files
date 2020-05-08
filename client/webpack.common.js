@@ -13,8 +13,8 @@ const fs = require('fs');
 const path = require('path');
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-function getOutputDir() {
-  return pathHelper("dist");
+function getOutputDir(environment) {
+  return (environment === "production") ? pathHelper("../src/PTFiles.Web/wwwroot") : pathHelper("dist");
 }
 
 function getEnvionmentVariableKeys(env) {
@@ -39,7 +39,7 @@ module.exports = function (env) {
 
   return {
     output: {
-      path: getOutputDir(),
+      path: getOutputDir(env.ENVIRONMENT),
       publicPath: "/",
       filename: (env.ENVIRONMENT === "production") ? "[name].[contenthash].js" : "[name].js",
     },

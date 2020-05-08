@@ -234,7 +234,6 @@ dist/
 config.Local.json
 .vscode/**
 !.vscode/settings.json
-# Recaura.Web/Properties/launchSettings.json
 
-Recaura.Web/wwwroot/bundle/*
+**/wwwroot/*
 # client/src/api/generated.ts

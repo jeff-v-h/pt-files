@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace PTFiles.Web
 {
@@ -31,7 +32,11 @@ namespace PTFiles.Web
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        //.UseKestrel()
+                        //.UseContentRoot(Directory.GetCurrentDirectory())
+                        //.UseIISIntegration()
+                        .UseStartup<Startup>();
                 });
 
         private static void CreateAndSeedDbIfNotExists(IHost host)
