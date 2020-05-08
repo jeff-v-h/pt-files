@@ -22,7 +22,7 @@ export default class NavMenu extends React.PureComponent<
         mode="horizontal"
       >
         <Item key="home">
-          <Link to="/">Recaura</Link>
+          <Link to="/">PTFiles</Link>
         </Item>
         <Item key="patients">
           <Link to="/patients">Patients</Link>
