@@ -22,7 +22,6 @@ namespace PTFiles.Web.Controllers
         {
             //return await Mediator.Send(new GetPatientsQuery());
             var connString = _configuration["ConnectionStrings:PTFilesDb"];
-            var conn = _configuration.GetConnectionString("PTFilesDb");
             return new GetPatientsVm
             {
                 Patients = new List<PatientVm>
@@ -31,7 +30,7 @@ namespace PTFiles.Web.Controllers
                     {
                         Id = 1111,
                         FirstName = connString,
-                        LastName = conn,
+                        LastName = "Person",
                         DOB = DateTime.UtcNow
                     }
                 }
