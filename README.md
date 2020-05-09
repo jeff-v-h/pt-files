@@ -31,13 +31,14 @@ The TypeScript api models are automatically generated/updated every time the bac
 
 1. Open Solution with Visual Studio.
 2. Target PTFiles.Web and Run project on IIS Express.
-3. A new browser should open up to [swagger](http://localhost:5555/swagger) when successfully built, otherwise open browser to [http://localhost:5555/swagger)](http://localhost:5555/swagger). It also serves static content from wwwroot if there are front-end built files existing in there. You may navigate to view this static content at [http://localhost:5555](http://localhost:5555).
+3. A new browser should open up to [swagger](http://localhost:5555/swagger) when successfully built, otherwise open browser to [localhost:5555/swagger)](http://localhost:5555/swagger). It also serves static content from wwwroot if there are front-end built files existing in there. You may navigate to view this static content at [localhost:5555](http://localhost:5555).
 
 #### Client
 
 1. Navigate to client project from root `cd client`.
 2. Install dependencies `npm install`.
 3. Run the frontend client `npm start`.
+4. Visit [localhost:3000](http://localhost:3000) in your browser.
 
 ## Production
 

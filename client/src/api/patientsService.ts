@@ -14,7 +14,6 @@ class PatientsService {
       return resp.data;
     } catch (e) {
       message.error(e);
-      console.log(e);
       return Promise.reject(e);
     }
   };

@@ -39,25 +39,8 @@ type Props = PatientsStore.PatientsState &
   RouteComponentProps<{}>;
 
 class DashboardTable extends React.Component<Props> {
-  state = {
-    url: ""
-  }
   componentDidMount() {
     this.ensureDataFetched();
-  }
-
-  setUrl = (e: any) => {
-    this.setState({ url: e.target.value })
-  }
-
-  fetchUrl = async () => {
-    console.log("-----------------------------")
-    try {
-      const resp = (await get(this.state.url)) as AxiosResponse<IGetPatientVm>;
-      console.log('data: ', resp.data);
-    } catch (e) {
-      console.log('error fetch ' + this.state.url, e);
-    }
   }
 
   render() {
@@ -66,8 +49,6 @@ class DashboardTable extends React.Component<Props> {
     return (
       <>
         <Table onRow={this.onRow} columns={columns} dataSource={data} />
-        <input value={this.state.url} onChange={this.setUrl} />
-        <button onClick={this.fetchUrl}>fetch</button>
       </>
     );
   }
