@@ -2,39 +2,16 @@
 using PTFiles.Application.Features.Patients.GetPatients;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 
 namespace PTFiles.Web.Controllers
 {
     [ApiController]
     public class PatientsController : ApiControllerBase
     {
-        private IConfiguration _configuration;
-        public PatientsController(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         [HttpGet]
         public async Task<ActionResult<GetPatientsVm>> Get()
         {
-            //return await Mediator.Send(new GetPatientsQuery());
-            var connString = _configuration["ConnectionStrings:PTFilesDb"];
-            return new GetPatientsVm
-            {
-                Patients = new List<PatientVm>
-                {
-                    new PatientVm
-                    {
-                        Id = 1111,
-                        FirstName = connString,
-                        LastName = "Person",
-                        DOB = DateTime.UtcNow
-                    }
-                }
-            };
+            return await Mediator.Send(new GetPatientsQuery());
         }
 
         [HttpGet("{id}")]

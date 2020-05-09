@@ -18,7 +18,7 @@ namespace PTFiles.Web
         {
             var host = CreateHostBuilder(args).Build();
 
-            //CreateAndSeedDbIfNotExists(host);
+            CreateAndSeedDbIfNotExists(host);
 
             host.Run();
         }
@@ -45,7 +45,7 @@ namespace PTFiles.Web
                     var context = services.GetRequiredService<PTFilesDbContext>();
                     context.Database.Migrate();
 
-                    //PTFilesDbContextSeed.Initialise(services);
+                    PTFilesDbContextSeed.Initialise(services);
                 }
                 catch (Exception ex)
                 {
