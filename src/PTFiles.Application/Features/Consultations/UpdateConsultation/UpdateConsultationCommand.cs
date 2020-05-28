@@ -15,8 +15,7 @@ namespace PTFiles.Application.Features.Consultations.UpdateConsultation
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public int Number { get; set; }
-        public PractitionerVm? Practitioner { get; set; }
+        public int PractitionerId { get; set; }
         public SubjectiveAssessmentVm? SubjectiveAssessment { get; set; }
         public ObjectiveAssessmentVm? ObjectiveAssessment { get; set; }
         public string Treatments { get; set; }
@@ -40,11 +39,7 @@ namespace PTFiles.Application.Features.Consultations.UpdateConsultation
                     .FirstOrNotFoundAsync(nameof(Consultation), command.Id, cancelToken);
                 
                 consultation.Date = command.Date;
-                consultation.Number = command.Number;
-                if (command.Practitioner != null)
-                {
-                    consultation.PractitionerId = command.Practitioner.Id;
-                }
+                consultation.PractitionerId = command.PractitionerId;
 
                 if (command.SubjectiveAssessment != null)
                 {
