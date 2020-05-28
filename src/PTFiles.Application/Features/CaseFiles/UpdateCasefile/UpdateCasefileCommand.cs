@@ -28,11 +28,11 @@ namespace PTFiles.Application.Features.Casefiles.UpdateCasefile
             {
                 var casefile = await _dbContext.Casefiles
                     .Where(p => p.Id == command.Id)
-                    .FirstOrNotFoundAsync(nameof(Patient), command.Id, cancelToken);
+                    .FirstOrNotFoundAsync(nameof(Casefile), command.Id, cancelToken);
 
                 if (casefile == null)
                 {
-                    throw new NotFoundException(nameof(Patient), command.Id);
+                    throw new NotFoundException(nameof(Casefile), command.Id);
                 }
 
                 casefile.PatientId = command.PatientId;

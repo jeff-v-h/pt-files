@@ -7,13 +7,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PTFiles.Application.Features.Casefiles.DeleteCasefile
+namespace PTFiles.Application.Features.Consultations.DeleteConsultation
 {
-    public class DeleteCasefileCommand : IRequest
+    public class DeleteConsultationCommand : IRequest
     {
         public int Id { get; set; }
 
-        public class DeleteTodoListCommandHandler : IRequestHandler<DeleteCasefileCommand>
+        public class DeleteTodoListCommandHandler : IRequestHandler<DeleteConsultationCommand>
         {
             private readonly IPTFilesDbContext _dbContext;
 
@@ -22,18 +22,18 @@ namespace PTFiles.Application.Features.Casefiles.DeleteCasefile
                 _dbContext = context;
             }
 
-            public async Task<Unit> Handle(DeleteCasefileCommand command, CancellationToken cancelToken)
+            public async Task<Unit> Handle(DeleteConsultationCommand command, CancellationToken cancelToken)
             {
-                var casefile = await _dbContext.Casefiles
+                var consult = await _dbContext.Consultations
                     .Where(p => p.Id == command.Id)
-                    .FirstOrNotFoundAsync(nameof(Casefile), command.Id, cancelToken);
+                    .FirstOrNotFoundAsync(nameof(Consultation), command.Id, cancelToken);
 
-                if (casefile == null)
+                if (consult == null)
                 {
-                    throw new NotFoundException(nameof(Casefile), command.Id);
+                    throw new NotFoundException(nameof(Consultation), command.Id);
                 }
 
-                _dbContext.Casefiles.Remove(casefile);
+                _dbContext.Consultations.Remove(consult);
 
                 await _dbContext.SaveChangesAsync(cancelToken);
 
