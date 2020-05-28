@@ -27,6 +27,7 @@ namespace PTFiles.Application.Common.Mappings
             CreateMap<Patient, FilesPatientVm>();
 
             CreateMap<Consultation, GetConsultationVm>();
+            CreateMap<Consultation, GetConsultationBaseVm>();
             CreateMap<Practitioner, PractitionerVm>();
             CreateMap<SubjectiveAssessment, SubjectiveAssessmentVm>();
             CreateMap<SubjectiveAssessmentVm, SubjectiveAssessment>()
