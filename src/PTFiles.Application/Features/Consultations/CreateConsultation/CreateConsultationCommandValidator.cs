@@ -15,6 +15,12 @@ namespace PTFiles.Application.Features.Consultations.CreateConsultation
             RuleFor(v => v.CasefileId)
                 .NotEmpty().WithMessage("Casefile id is required.");
 
+            RuleFor(v => v.SubjectiveAssessment)
+                .NotEmpty().WithMessage("SubjectiveAssessment property is required.");
+
+            RuleFor(v => v.ObjectiveAssessment)
+                .NotEmpty().WithMessage("ObjectiveAssessment property is required.");
+
             RuleFor(v => v.Treatments)
                 .NotEmpty().WithMessage("Treatments property is required.");
 
