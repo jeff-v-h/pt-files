@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using PTFiles.Application.Common.Exceptions;
 using PTFiles.Application.Common.Extensions;
 using PTFiles.Application.Common.Interfaces.Persistence;
 using PTFiles.Domain.Entities;
@@ -23,14 +24,15 @@ namespace PTFiles.Application.Features.Patients.UpdatePatient
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public Gender Gender { get; set; }
+        public string Occupation { get; set; }
 
 
-        public class UpdatepatientCommandHandler : IRequestHandler<UpdatePatientCommand>
+        public class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientCommand>
         {
             private readonly IPTFilesDbContext _dbContext;
             private readonly IMapper _mapper;
 
-            public UpdatepatientCommandHandler(IPTFilesDbContext context, IMapper mapper)
+            public UpdatePatientCommandHandler(IPTFilesDbContext context, IMapper mapper)
             {
                 _dbContext = context;
                 _mapper = mapper;
@@ -42,6 +44,11 @@ namespace PTFiles.Application.Features.Patients.UpdatePatient
                     .Where(p => p.Id == command.Id)
                     .FirstOrNotFoundAsync(nameof(Patient), command.Id, cancelToken);
 
+                if (patient == null)
+                {
+                    throw new NotFoundException(nameof(Patient), command.Id);
+                }
+
                 patient.FirstName = command.FirstName;
                 patient.LastName = command.LastName;
                 patient.Honorific = command.Honorific;
@@ -51,6 +58,7 @@ namespace PTFiles.Application.Features.Patients.UpdatePatient
                 patient.HomePhone = command.HomePhone;
                 patient.MobilePhone = command.MobilePhone;
                 patient.Gender = command.Gender;
+                patient.Occupation = command.Occupation;
 
                 _dbContext.Patients.Update(patient);
                 await _dbContext.SaveChangesAsync(cancelToken);
