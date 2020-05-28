@@ -49,6 +49,17 @@ export enum Honorific {
     Prof = 10,
 }
 
+export interface ICreateCasefileCommand {
+    patientId: number;
+    name: string;
+}
+
+export interface IUpdateCasefileCommand {
+    id: number;
+    patientId: number;
+    name: string;
+}
+
 export interface IGetConsultationVm {
     id: number;
     casefileId: number;
