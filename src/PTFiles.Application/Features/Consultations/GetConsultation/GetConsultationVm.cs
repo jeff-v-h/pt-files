@@ -5,7 +5,7 @@ namespace PTFiles.Application.Features.Consultations.GetConsultation
 {
     public class GetConsultationVm : GetConsultationBaseVm
     {
-        public PractitionerVm Practitioner { get; set; }
+        public int PractitionerId { get; set; }
         public SubjectiveAssessmentVm SubjectiveAssessment { get; set; }
         public ObjectiveAssessmentVm ObjectiveAssessment { get; set; }
         public string Treatments { get; set; }
@@ -17,6 +17,5 @@ namespace PTFiles.Application.Features.Consultations.GetConsultation
         public int Id { get; set; }
         public int CasefileId { get; set; }
         public DateTime Date { get; set; }
-        public int Number { get; set; }
     }
 }

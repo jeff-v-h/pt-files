@@ -16,6 +16,7 @@ namespace PTFiles.Application.Features.Consultations.UpdateConsultation
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public int PractitionerId { get; set; }
+        public int CasefileId { get; set; }
         public SubjectiveAssessmentVm? SubjectiveAssessment { get; set; }
         public ObjectiveAssessmentVm? ObjectiveAssessment { get; set; }
         public string Treatments { get; set; }
@@ -40,6 +41,7 @@ namespace PTFiles.Application.Features.Consultations.UpdateConsultation
                 
                 consultation.Date = command.Date;
                 consultation.PractitionerId = command.PractitionerId;
+                consultation.CasefileId = command.CasefileId;
 
                 if (command.SubjectiveAssessment != null)
                 {

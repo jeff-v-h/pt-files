@@ -13,6 +13,7 @@ namespace PTFiles.Application.Features.Consultations.CreateConsultation
     {
         public DateTime Date { get; set; }
         public int PractitionerId { get; set; }
+        public int CasefileId { get; set; }
         public SubjectiveAssessmentVm SubjectiveAssessment { get; set; }
         public ObjectiveAssessmentVm ObjectiveAssessment { get; set; }
         public string Treatments { get; set; }
@@ -31,17 +32,35 @@ namespace PTFiles.Application.Features.Consultations.CreateConsultation
 
             public async Task<int> Handle(CreateConsultationCommand command, CancellationToken cancelToken)
             {
+                // Create consult first to get an Id
                 var consult = new Consultation
                 {
                     Date = command.Date,
                     PractitionerId = command.PractitionerId,
-                    SubjectiveAssessment = _mapper.Map<SubjectiveAssessment>(command.SubjectiveAssessment),
-                    ObjectiveAssessment = _mapper.Map<ObjectiveAssessment>(command.ObjectiveAssessment),
+                    CasefileId = command.CasefileId,
                     Treatments = command.Treatments,
                     Plans = command.Plans
                 };
 
                 _dbContext.Consultations.Add(consult);
+                await _dbContext.SaveChangesAsync(cancelToken);
+
+                // Pass consultId to subjective and objective to save and get their own IDs
+                var subjective = _mapper.Map<SubjectiveAssessment>(command.SubjectiveAssessment);
+                subjective.ConsultationId = consult.Id;
+                var objective = _mapper.Map<ObjectiveAssessment>(command.ObjectiveAssessment);
+                objective.ConsultationId = consult.Id;
+
+                _dbContext.SubjectiveAssessments.Add(subjective);
+                _dbContext.ObjectiveAssessments.Add(objective);
+
+                await _dbContext.SaveChangesAsync(cancelToken);
+
+                // Pass subjective and objective ids back into consult and update it
+                consult.SubjectiveId = subjective.Id;
+                consult.ObjectiveId = objective.Id;
+
+                _dbContext.Consultations.Update(consult);
                 await _dbContext.SaveChangesAsync(cancelToken);
 
                 return consult.Id;

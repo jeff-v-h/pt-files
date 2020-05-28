@@ -60,23 +60,18 @@ export interface IUpdateCasefileCommand {
     name: string;
 }
 
-export interface IGetConsultationVm {
+export interface IGetConsultationBaseVm {
     id: number;
     casefileId: number;
     date: string;
-    number: number;
-    practitioner: IPractitionerVm;
+}
+
+export interface IGetConsultationVm extends IGetConsultationBaseVm {
+    practitionerId: number;
     subjectiveAssessment: ISubjectiveAssessmentVm;
     objectiveAssessment: IObjectiveAssessmentVm;
     treatments: string;
     plans: string;
-}
-
-export interface IPractitionerVm {
-    id: number;
-    firstName: string;
-    lastName: string;
-    jobLevel: string;
 }
 
 export interface ISubjectiveAssessmentVm {
@@ -111,10 +106,20 @@ export interface IObjectiveAssessmentVm {
 export interface IUpdateConsultationCommand {
     id: number;
     date: string;
-    number: number;
-    practitioner: IPractitionerVm | null;
+    practitionerId: number;
+    casefileId: number;
     subjectiveAssessment: ISubjectiveAssessmentVm | null;
     objectiveAssessment: IObjectiveAssessmentVm | null;
+    treatments: string;
+    plans: string;
+}
+
+export interface ICreateConsultationCommand {
+    date: string;
+    practitionerId: number;
+    casefileId: number;
+    subjectiveAssessment: ISubjectiveAssessmentVm;
+    objectiveAssessment: IObjectiveAssessmentVm;
     treatments: string;
     plans: string;
 }
