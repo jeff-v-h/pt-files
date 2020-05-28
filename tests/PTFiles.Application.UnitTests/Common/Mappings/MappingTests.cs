@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PTFiles.Application.Features.CaseFiles.GetCaseFile;
+using PTFiles.Application.Features.Casefiles.GetCasefile;
 using PTFiles.Application.Features.Consultations.GetConsultation;
 using PTFiles.Application.Features.Patients.GetPatient;
 using PTFiles.Application.Features.Patients.GetPatients;
@@ -30,7 +30,7 @@ namespace PTFiles.Application.UnitTests.Common.Mappings
 
         [Theory]
         [InlineData(typeof(Patient), typeof(GetPatientVm))]
-        [InlineData(typeof(CaseFile), typeof(GetCaseFileVm))]
+        [InlineData(typeof(Casefile), typeof(GetCasefileVm))]
         [InlineData(typeof(Consultation), typeof(GetConsultationVm))]
         [InlineData(typeof(List<Patient>), typeof(GetPatientsVm))]
         [InlineData(typeof(SubjectiveAssessment), typeof(GetSubjectiveAssessmentVm))]

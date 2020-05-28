@@ -9,10 +9,11 @@
 
 
 
-export interface IGetCaseFileVm {
+export interface IGetCasefileVm {
     id: number;
     name: string;
     created: string;
+    patientId: number;
     consultations: IConsultVm[];
     patient: IFilesPatientVm;
 }
@@ -50,7 +51,7 @@ export enum Honorific {
 
 export interface IGetConsultationVm {
     id: number;
-    caseFileId: number;
+    casefileId: number;
     date: string;
     number: number;
     practitioner: IPractitionerVm;
@@ -136,10 +137,10 @@ export interface IPersonVm {
 
 export interface IGetPatientVm extends IPersonVm {
     occupation: string;
-    caseFiles: IPatientCaseFileVm[];
+    casefiles: IPatientCasefileVm[];
 }
 
-export interface IPatientCaseFileVm {
+export interface IPatientCasefileVm {
     id: number;
     name: string;
 }

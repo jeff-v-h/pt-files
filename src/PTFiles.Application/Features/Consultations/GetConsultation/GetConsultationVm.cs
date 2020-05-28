@@ -6,7 +6,7 @@ namespace PTFiles.Application.Features.Consultations.GetConsultation
     public class GetConsultationVm
     {
         public int Id { get; set; }
-        public int CaseFileId { get; set; }
+        public int CasefileId { get; set; }
         public DateTime Date { get; set; }
         public int Number { get; set; }
         public PractitionerVm Practitioner { get; set; }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PTFiles.Application.Common.Models;
-using PTFiles.Application.Features.CaseFiles.GetCaseFile;
+using PTFiles.Application.Features.Casefiles.GetCasefile;
 using PTFiles.Application.Features.Consultations.GetConsultation;
 using PTFiles.Application.Features.ObjectiveAx.GetObjectiveAssessment;
 using PTFiles.Application.Features.Patients.GetPatient;
@@ -20,9 +20,9 @@ namespace PTFiles.Application.Common.Mappings
             CreateMap<Patient, PatientVm>();
 
             CreateMap<Patient, GetPatientVm>();
-            CreateMap<CaseFile, PatientCaseFileVm>();
+            CreateMap<Casefile, PatientCasefileVm>();
 
-            CreateMap<CaseFile, GetCaseFileVm>();
+            CreateMap<Casefile, GetCasefileVm>();
             CreateMap<Consultation, ConsultVm>();
             CreateMap<Patient, FilesPatientVm>();
 

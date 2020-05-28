@@ -8,33 +8,33 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PTFiles.Application.Features.CaseFiles.GetCaseFile
+namespace PTFiles.Application.Features.Casefiles.GetCasefile
 {
-    public class GetCaseFileQuery : IRequest<GetCaseFileVm>
+    public class GetCasefileQuery : IRequest<GetCasefileVm>
     {
         public int Id { get; set; }
 
-        public class GetCaseFileQueryHandler : IRequestHandler<GetCaseFileQuery, GetCaseFileVm>
+        public class GetCasefileQueryHandler : IRequestHandler<GetCasefileQuery, GetCasefileVm>
         {
             private readonly IPTFilesDbContext _dbContext;
             private readonly IMapper _mapper;
 
-            public GetCaseFileQueryHandler(IPTFilesDbContext context, IMapper mapper)
+            public GetCasefileQueryHandler(IPTFilesDbContext context, IMapper mapper)
             {
                 _dbContext = context;
                 _mapper = mapper;
             }
 
-            public async Task<GetCaseFileVm> Handle(GetCaseFileQuery query, CancellationToken token)
+            public async Task<GetCasefileVm> Handle(GetCasefileQuery query, CancellationToken token)
             {
-                var file = await _dbContext.CaseFiles
+                var file = await _dbContext.Casefiles
                     .AsNoTracking()
-                    .Include(c => c.Consultations)
-                    .Include(c => c.Patient)
+                    //.Include(c => c.Consultations)
+                    //.Include(c => c.Patient)
                     .Where(p => p.Id == query.Id)
-                    .FirstOrNotFoundAsync(nameof(CaseFile), query.Id, token);
+                    .FirstOrNotFoundAsync(nameof(Casefile), query.Id, token);
 
-                return _mapper.Map<GetCaseFileVm>(file);
+                return _mapper.Map<GetCasefileVm>(file);
             }
         }
     }

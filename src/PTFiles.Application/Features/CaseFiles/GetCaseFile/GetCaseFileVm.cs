@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace PTFiles.Application.Features.CaseFiles.GetCaseFile
+namespace PTFiles.Application.Features.Casefiles.GetCasefile
 {
-    public class GetCaseFileVm
+    public class GetCasefileVm
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Created { get; set; }
+        public int PatientId { get; set; }
         public IReadOnlyCollection<ConsultVm> Consultations { get; set; }
         public FilesPatientVm Patient { get; set; }
     }

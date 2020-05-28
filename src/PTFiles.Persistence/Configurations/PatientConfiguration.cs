@@ -47,7 +47,7 @@ namespace PTFiles.Persistence.Configurations
             entity.Property(t => t.Occupation)
                 .HasColumnType("nvarchar(50)");
 
-            //entity.HasMany(p => p.CaseFiles)
+            //entity.HasMany(p => p.Casefiles)
             //    .WithOne()
             //    .HasForeignKey(p => p.PatientId);
         }

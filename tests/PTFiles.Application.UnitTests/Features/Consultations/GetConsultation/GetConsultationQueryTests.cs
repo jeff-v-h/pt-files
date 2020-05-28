@@ -23,7 +23,7 @@ namespace PTFiles.Application.UnitTests.Features.Consultations.GetConsultation
         }
 
         [Fact]
-        public async Task Handle_ReturnsCorrectVmAndCaseFile()
+        public async Task Handle_ReturnsCorrectVmAndCasefile()
         {
             var query = new GetConsultationQuery { Id = 1 };
 

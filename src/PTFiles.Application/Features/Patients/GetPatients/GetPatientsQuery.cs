@@ -24,7 +24,7 @@ namespace PTFiles.Application.Features.Patients.GetPatients
             {
                 var patients = await _dbContext.Patients
                     .AsNoTracking()
-                    .Include(p => p.CaseFiles)
+                    .Include(p => p.Casefiles)
                     .ToListAsync(token);
 
                 return _mapper.Map<GetPatientsVm>(patients);
