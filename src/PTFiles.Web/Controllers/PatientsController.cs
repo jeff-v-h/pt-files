@@ -26,7 +26,9 @@ namespace PTFiles.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<int>> Create([FromBody] CreatePatientCommand command)
         {
-            return await Mediator.Send(command);
+            var newId = await Mediator.Send(command);
+
+            return CreatedAtAction(nameof(Get), new { id = newId }, newId);
         }
 
         [HttpPut("{id}")]

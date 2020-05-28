@@ -152,6 +152,33 @@ export enum Gender {
     Other = 3,
 }
 
+export interface ICreatePatientCommand {
+    honorific: Honorific;
+    firstName: string;
+    lastName: string;
+    dob: string;
+    email: string;
+    countryCode: string;
+    homePhone: string;
+    mobilePhone: string;
+    gender: Gender;
+    occupation: string;
+}
+
+export interface IUpdatePatientCommand {
+    id: number;
+    honorific: Honorific;
+    firstName: string;
+    lastName: string;
+    dob: string;
+    email: string;
+    countryCode: string;
+    homePhone: string;
+    mobilePhone: string;
+    gender: Gender;
+    occupation: string;
+}
+
 export interface IGetSubjectiveAssessmentVm extends ISubjectiveAssessmentVm {
 }
 
