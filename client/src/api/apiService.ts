@@ -26,14 +26,14 @@ export class ApiService {
     return axios.post(url, payload, config).catch(handleError(showDefaultErrorMsg));
   }
 
-  patch(
+  put(
     url: string,
     payload: any,
     token?: string,
     showDefaultErrorMsg: boolean = true
   ): Promise<AxiosResponse | AxiosError> {
     const config = getConfig(token);
-    return axios.patch(url, payload, config).catch(handleError(showDefaultErrorMsg));
+    return axios.put(url, payload, config).catch(handleError(showDefaultErrorMsg));
   }
 
   delete(url: string, token?: string, showDefaultErrorMsg: boolean = true): Promise<AxiosResponse | AxiosError> {
