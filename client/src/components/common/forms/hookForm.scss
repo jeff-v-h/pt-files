@@ -1,0 +1,213 @@
+@import '../variables';
+
+$label-right-pad: 5rem;
+$error-height: 20rem;
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.hookForm {
+  max-width: $form-max-width;
+  margin: 20rem auto;
+}
+
+.hookConsultForm,
+.hookCasefileForm {
+  @extend .hookForm;
+  margin-top: 0;
+}
+
+.hookLoginForm {
+  @extend .hookForm;
+  width: 400rem;
+}
+
+.hookSignupForm {
+  @extend .hookForm;
+  width: 460rem;
+}
+
+.inputSection,
+.phoneSection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hookRow {
+  display: flex;
+}
+
+.hookInputContainer,
+.hookSelectContainer {
+  display: flex;
+  margin-right: 3 * $label-right-pad;
+}
+
+.hookTextAreaContainer {
+  margin-right: 3 * $label-right-pad;
+  flex-grow: 1;
+}
+
+.hookLabelDiv {
+  display: flex;
+  min-width: 90rem;
+  justify-content: flex-end;
+}
+
+.hookLabelDivLong {
+  @extend .hookLabelDiv;
+  min-width: 140rem;
+}
+
+.hookSelectLabel,
+.hookInputLabel {
+  cursor: pointer;
+  text-align: end;
+  align-self: center;
+  display: flex;
+  padding: 4rem $label-right-pad;
+}
+
+.hookTextAreaLabel {
+  cursor: pointer;
+  padding: 4rem 0;
+}
+
+.hookSignupLabel {
+  @extend .hookLabelDivLong;
+  @extend .hookSelectLabel;
+}
+
+.hookTextAreaLabelCol {
+  display: flex;
+}
+
+.hookInputMain {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 150rem;
+}
+
+.hookInputShort {
+  @extend .hookInputMain;
+  max-width: 110rem;
+}
+
+.hookInputLong {
+  @extend .hookInputMain;
+}
+
+.hookInputLong input {
+  width: 275rem;
+}
+
+.hookTextAreaMain {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.honorificSelect,
+.genderSelect {
+  width: 85rem;
+}
+
+.registerTypeSelect {
+  width: 150rem;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: small;
+  min-height: $error-height;
+}
+
+.hookInputSupport {
+  min-height: $error-height;
+  flex-grow: 1;
+}
+
+.hookSelectSupport {
+  @extend .hookInputSupport;
+  min-width: 10rem;
+}
+
+.submitRow {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10rem;
+}
+
+.loginRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10rem;
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.asterisk {
+  color: red;
+  font-weight: bold;
+  padding-right: 3rem;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  padding-right: 10rem;
+}
+
+.input {
+  box-sizing: border-box;
+  margin: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14rem;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+
+.input:hover {
+  border-color: $primary-color;
+}
+
+.input:focus {
+  outline: 0;
+  border-color: $primary-color;
+  box-shadow: 0 0 0 2px rgba(245, 149, 15, 0.2);
+}
+
+.input::placeholder {
+  color: #c5c5c5;
+}
+
+.textArea {
+  @extend .input;
+  max-width: 100%;
+  height: auto;
+  min-height: 32px;
+  vertical-align: bottom;
+  transition: all 0.3s, height 0s;
+}
+
+.hint {
+  margin: 0 0 0 10rem;
+  font-size: small;
+  display: flex;
+  align-items: center;
+}
