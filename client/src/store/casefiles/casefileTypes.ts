@@ -1,5 +1,5 @@
+import { IUpdateCasefileCommand, IGetCasefileVm } from './../../api/generated';
 import { Action } from 'redux';
-import { Casefile } from '../../models/casefileModels';
 
 export const C = {
   CREATE_CASEFILE_REQUEST: 'CREATE_CASEFILE_REQUEST',
@@ -20,30 +20,30 @@ export const C = {
   DELETE_CASEFILE_FAILURE: 'DELETE_CASEFILE_FAILURE'
 };
 
-export interface CasefileState extends Casefile {
+export interface CasefileState extends IGetCasefileVm {
   isFetching: boolean;
-  list: Casefile[];
+  list: IGetCasefileVm[];
 }
 
 //#region actions
 export interface CreateCasefileSuccessAction extends Action {
-  payload: Casefile;
+  payload: IGetCasefileVm;
 }
 
 export interface GetCasefileSuccessAction extends Action {
-  payload: Casefile;
+  payload: IGetCasefileVm;
 }
 
 export interface SelectCasefileAction extends Action {
-  payload: Casefile;
+  payload: IGetCasefileVm;
 }
 
 export interface GetCasefilesSuccessAction extends Action {
-  payload: Casefile[];
+  payload: IGetCasefileVm[];
 }
 
 export interface UpdateCasefileSuccessAction extends Action {
-  payload: Casefile;
+  payload: IUpdateCasefileCommand;
 }
 
 export interface DeleteCasefileSuccessAction extends Action {
