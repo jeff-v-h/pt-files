@@ -18,8 +18,6 @@ namespace PTFiles.Application.Common.Mappings
             CreateMap<Patient, GetPatientVm>();
 
             CreateMap<Casefile, GetCasefileVm>();
-            CreateMap<Consultation, ConsultVm>();
-            CreateMap<Patient, FilesPatientVm>();
 
             CreateMap<Consultation, GetConsultationVm>();
             CreateMap<Consultation, GetConsultationBaseVm>();

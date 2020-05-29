@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import * as I from './generated';
+import * as G from './generated';
 import { message } from 'antd';
 import { ApiService } from './apiService';
 import { keys } from '../helpers/keys';
@@ -7,7 +7,7 @@ import { keys } from '../helpers/keys';
 const { apiUrl } = keys;
 
 class ConsultationService extends ApiService {
-  async createConsultation(consult: I.ICreateConsultationCommand): Promise<I.IGetConsultationVm> {
+  async createConsultation(consult: G.ICreateConsultationCommand): Promise<G.IGetConsultationVm> {
     try {
       const url = `${apiUrl}/consultations`;
       const resp = (await this.post(url, consult)) as AxiosResponse<number>;
@@ -17,28 +17,28 @@ class ConsultationService extends ApiService {
     }
   }
 
-  async getConsultations(casefileId?: string): Promise<I.IGetConsultationBaseVm[]> {
+  async getConsultations(casefileId?: string): Promise<G.IGetConsultationBaseVm[]> {
     try {
       let url = `${apiUrl}/consultations`;
       if (casefileId) url += `?casefileId=${casefileId}`;
-      const resp = (await this.get(url)) as AxiosResponse<I.IGetConsultationBaseVm[]>;
+      const resp = (await this.get(url)) as AxiosResponse<G.IGetConsultationBaseVm[]>;
       return resp.data;
     } catch (e) {
       return this.handleRequestError(e);
     }
   }
 
-  async getConsultation(id: number): Promise<I.IGetConsultationVm> {
+  async getConsultation(id: number): Promise<G.IGetConsultationVm> {
     try {
       const url = `${apiUrl}/consultations/${id}`;
-      const resp = (await this.get(url)) as AxiosResponse<I.IGetConsultationVm>;
+      const resp = (await this.get(url)) as AxiosResponse<G.IGetConsultationVm>;
       return resp.data;
     } catch (e) {
       return this.handleRequestError(e);
     }
   }
 
-  async updateConsultation(id: number, consult: I.IUpdateConsultationCommand): Promise<void> {
+  async updateConsultation(id: number, consult: G.IUpdateConsultationCommand): Promise<void> {
     try {
       const url = `${apiUrl}/consultations/${id}`;
       (await this.put(url, consult)) as AxiosResponse<void>;
@@ -59,4 +59,5 @@ class ConsultationService extends ApiService {
   }
 }
 
-export const consultationService = new ConsultationService();
+const consultationService = new ConsultationService();
+export default consultationService;

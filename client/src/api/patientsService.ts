@@ -6,7 +6,7 @@ import { ApiService } from './apiService';
 
 const { apiUrl } = keys;
 
-class PatientsService extends ApiService {
+class PatientService extends ApiService {
   createPatient = async (patient: G.ICreatePatientCommand): Promise<G.IGetPatientVm> => {
     try {
       const url = `${apiUrl}/patients`;
@@ -58,4 +58,5 @@ class PatientsService extends ApiService {
   };
 }
 
-export const patientsService = new PatientsService();
+const patientService = new PatientService();
+export default patientService;

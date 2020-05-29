@@ -14,39 +14,6 @@ export interface IGetCasefileVm {
     name: string;
     created: string;
     patientId: number;
-    consultations: IConsultVm[];
-    patient: IFilesPatientVm;
-}
-
-export interface IConsultVm {
-    id: number;
-    date: string;
-    number: number;
-    practitionerId: number;
-}
-
-export interface IFilesPatientVm {
-    id: number;
-    honorific: Honorific;
-    firstName: string;
-    lastName: string;
-    dob: string;
-    occupation: string;
-}
-
-/** 0 = Mr 1 = Mrs 2 = Miss 3 = Ms 4 = Master 5 = Mx 6 = M 7 = Sir 8 = Madam 9 = Dr 10 = Prof */
-export enum Honorific {
-    Mr = 0,
-    Mrs = 1,
-    Miss = 2,
-    Ms = 3,
-    Master = 4,
-    Mx = 5,
-    M = 6,
-    Sir = 7,
-    Madam = 8,
-    Dr = 9,
-    Prof = 10,
 }
 
 export interface ICreateCasefileCommand {
@@ -142,6 +109,21 @@ export interface IPersonVm {
 
 export interface IGetPatientVm extends IPersonVm {
     occupation: string;
+}
+
+/** 0 = Mr 1 = Mrs 2 = Miss 3 = Ms 4 = Master 5 = Mx 6 = M 7 = Sir 8 = Madam 9 = Dr 10 = Prof */
+export enum Honorific {
+    Mr = 0,
+    Mrs = 1,
+    Miss = 2,
+    Ms = 3,
+    Master = 4,
+    Mx = 5,
+    M = 6,
+    Sir = 7,
+    Madam = 8,
+    Dr = 9,
+    Prof = 10,
 }
 
 /** 0 = PreferNotToSay 1 = Male 2 = Female 3 = Other */
