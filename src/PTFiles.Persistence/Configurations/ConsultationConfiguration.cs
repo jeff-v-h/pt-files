@@ -17,9 +17,6 @@ namespace PTFiles.Persistence.Configurations
                 .IsRequired()
                 .HasColumnType("date");
 
-            entity.Property(e => e.Number)
-                .IsRequired();
-
             entity.Property(e => e.PractitionerId)
                 .IsRequired();
 

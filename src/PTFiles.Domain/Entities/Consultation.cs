@@ -7,7 +7,6 @@ namespace PTFiles.Domain.Entities
         public int Id { get; set; }
         public int CasefileId { get; set; }
         public DateTime Date { get; set; }
-        public int Number { get; set; }
         public int PractitionerId { get; set; }
         public int SubjectiveId { get; set; }
         public int ObjectiveId { get; set; }
