@@ -111,19 +111,20 @@ export interface IGetPatientVm extends IPersonVm {
     occupation: string;
 }
 
-/** 0 = Mr 1 = Mrs 2 = Miss 3 = Ms 4 = Master 5 = Mx 6 = M 7 = Sir 8 = Madam 9 = Dr 10 = Prof */
+/** 0 = NoTitle 1 = Mr 2 = Mrs 3 = Miss 4 = Ms 5 = Master 6 = Mx 7 = M 8 = Sir 9 = Madam 10 = Dr 11 = Prof */
 export enum Honorific {
-    Mr = 0,
-    Mrs = 1,
-    Miss = 2,
-    Ms = 3,
-    Master = 4,
-    Mx = 5,
-    M = 6,
-    Sir = 7,
-    Madam = 8,
-    Dr = 9,
-    Prof = 10,
+    NoTitle = 0,
+    Mr = 1,
+    Mrs = 2,
+    Miss = 3,
+    Ms = 4,
+    Master = 5,
+    Mx = 6,
+    M = 7,
+    Sir = 8,
+    Madam = 9,
+    Dr = 10,
+    Prof = 11,
 }
 
 /** 0 = PreferNotToSay 1 = Male 2 = Female 3 = Other */

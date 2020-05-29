@@ -17,7 +17,7 @@ class ConsultationService extends ApiService {
     }
   }
 
-  async getConsultations(casefileId?: string): Promise<G.IGetConsultationBaseVm[]> {
+  async getConsultations(casefileId?: number): Promise<G.IGetConsultationBaseVm[]> {
     try {
       let url = `${apiUrl}/consultations`;
       if (casefileId) url += `?casefileId=${casefileId}`;
@@ -48,7 +48,7 @@ class ConsultationService extends ApiService {
     }
   }
 
-  async deleteConsultation(id: string): Promise<void> {
+  async deleteConsultation(id: number): Promise<void> {
     try {
       const url = `${apiUrl}/consultations/${id}`;
       const resp = (await this.delete(url)) as AxiosResponse<void>;

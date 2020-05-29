@@ -17,7 +17,7 @@ class CasefileService extends ApiService {
     }
   };
 
-  getCasefiles = async (patientId: string): Promise<G.IGetCasefileVm[]> => {
+  getCasefiles = async (patientId: number): Promise<G.IGetCasefileVm[]> => {
     try {
       const url = `${apiUrl}/casefiles?patientId=${patientId}`;
       const resp = (await this.get(url)) as AxiosResponse<G.IGetCasefileVm[]>;
@@ -27,7 +27,7 @@ class CasefileService extends ApiService {
     }
   };
 
-  getCasefile = async (id: string): Promise<G.IGetCasefileVm> => {
+  getCasefile = async (id: number): Promise<G.IGetCasefileVm> => {
     try {
       const url = `${apiUrl}/casefiles/${id}`;
       const resp = (await this.get(url)) as AxiosResponse<G.IGetCasefileVm>;
@@ -37,7 +37,7 @@ class CasefileService extends ApiService {
     }
   };
 
-  updateCasefile = async (id: string, casefile: G.IUpdateCasefileCommand): Promise<void> => {
+  updateCasefile = async (id: number, casefile: G.IUpdateCasefileCommand): Promise<void> => {
     try {
       const url = `${apiUrl}/casefiles/${id}`;
       await this.put(url, casefile);
@@ -47,7 +47,7 @@ class CasefileService extends ApiService {
     }
   };
 
-  deleteCasefile = async (id: string): Promise<void> => {
+  deleteCasefile = async (id: number): Promise<void> => {
     try {
       const url = `${apiUrl}/casefiles/${id}`;
       await this.delete(url);

@@ -1,12 +1,12 @@
-import { IGetCaseFileVm } from "../api/generated";
-import { AppThunkAction } from "./index";
-import { Action, Reducer } from "redux";
-import { patientsService } from "../api/patientsService";
+import { IGetCaseFileVm } from '../api/generated';
+import { AppThunkAction } from './index';
+import { Action, Reducer } from 'redux';
+import { patientsService } from '../api/patientService';
 
 const C = {
-  GET_CASEFILE_REQUEST: "GET_CASEFILE_REQUEST",
-  GET_CASEFILE_SUCCESS: "GET_CASEFILE_SUCCESS",
-  GET_CASEFILE_FAILURE: "GET_CASEFILE_FAILURE",
+  GET_CASEFILE_REQUEST: 'GET_CASEFILE_REQUEST',
+  GET_CASEFILE_SUCCESS: 'GET_CASEFILE_SUCCESS',
+  GET_CASEFILE_FAILURE: 'GET_CASEFILE_FAILURE'
 };
 
 /**
@@ -36,20 +36,14 @@ export interface GetCaseFileFailureAction {
 //--------------------
 
 // ACTION TYPE
-export type GetCaseFileKnownAction =
-  | GetCaseFileRequestAction
-  | GetCaseFileSuccessAction
-  | GetCaseFileFailureAction;
+export type GetCaseFileKnownAction = GetCaseFileRequestAction | GetCaseFileSuccessAction | GetCaseFileFailureAction;
 export type KnownAction = GetCaseFileKnownAction;
 
 /**
  * ACTION CREATORS
  */
 export const actionCreators = {
-  getCaseFile: (id: number): AppThunkAction<GetCaseFileKnownAction> => async (
-    dispatch,
-    getState
-  ) => {
+  getCaseFile: (id: number): AppThunkAction<GetCaseFileKnownAction> => async (dispatch, getState) => {
     const appState = getState();
     if (appState?.casefile?.file?.id !== id) {
       dispatch({ type: C.GET_CASEFILE_REQUEST });
@@ -57,13 +51,13 @@ export const actionCreators = {
       try {
         dispatch({
           type: C.GET_CASEFILE_SUCCESS,
-          payload: await patientsService.getCaseFile(id),
+          payload: await patientsService.getCaseFile(id)
         });
       } catch (e) {
         dispatch({ type: C.GET_CASEFILE_FAILURE });
       }
     }
-  },
+  }
 };
 
 /**
@@ -71,7 +65,7 @@ export const actionCreators = {
  */
 const unloadedState: CaseFileState = {
   isFetching: false,
-  file: null,
+  file: null
 };
 
 export const reducer: Reducer<CaseFileState> = (
@@ -91,7 +85,7 @@ export const reducer: Reducer<CaseFileState> = (
       obj = action as GetCaseFileSuccessAction;
       return {
         isFetching: false,
-        file: obj.payload,
+        file: obj.payload
       };
     case C.GET_CASEFILE_FAILURE:
       obj = action as GetCaseFileFailureAction;

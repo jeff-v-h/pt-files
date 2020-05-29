@@ -27,7 +27,7 @@ class PatientService extends ApiService {
     }
   };
 
-  getPatient = async (id: string): Promise<G.IGetPatientVm> => {
+  getPatient = async (id: number): Promise<G.IGetPatientVm> => {
     try {
       const url = `${apiUrl}/patients/${id}`;
       const resp = (await this.get(url)) as AxiosResponse<G.IGetPatientVm>;
@@ -37,7 +37,7 @@ class PatientService extends ApiService {
     }
   };
 
-  updatePatient = async (id: string, patient: G.IUpdatePatientCommand): Promise<void> => {
+  updatePatient = async (id: number, patient: G.IUpdatePatientCommand): Promise<void> => {
     try {
       const url = `${apiUrl}/patients/${id}`;
       await this.put(url, patient);
@@ -47,7 +47,7 @@ class PatientService extends ApiService {
     }
   };
 
-  deletePatient = async (id: string): Promise<void> => {
+  deletePatient = async (id: number): Promise<void> => {
     try {
       const url = `${apiUrl}/patients/${id}`;
       await this.delete(url);
