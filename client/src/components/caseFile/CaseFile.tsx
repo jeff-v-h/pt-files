@@ -1,21 +1,15 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { RouteComponentProps, withRouter, Link } from "react-router-dom";
-import { compose } from "redux";
-import * as CaseFileStore from "../../store/CaseFile";
-import { ApplicationState } from "../../store";
-import { List, message } from "antd";
-import style from "./caseFile.scss";
-import moment from "moment";
-import {
-  IGetCaseFileVm,
-  IFilesPatientVm,
-  Honorific,
-} from "../../api/generated";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
+import { compose } from 'redux';
+import * as CaseFileStore from '../../stores/CaseFile';
+import { ApplicationState } from '../../stores';
+import { List, message } from 'antd';
+import style from './caseFile.scss';
+import moment from 'moment';
+import { IGetCaseFileVm, IFilesPatientVm, Honorific } from '../../api/generated';
 
-type Props = CaseFileStore.CaseFileState &
-  typeof CaseFileStore.actionCreators &
-  RouteComponentProps<{ id: string }>;
+type Props = CaseFileStore.CaseFileState & typeof CaseFileStore.actionCreators & RouteComponentProps<{ id: string }>;
 
 class CaseFile extends React.Component<Props> {
   componentDidMount() {
@@ -23,20 +17,17 @@ class CaseFile extends React.Component<Props> {
   }
 
   getFormattedDate(date: string) {
-    return moment(date).format("Do MMM YYYY");
+    return moment(date).format('Do MMM YYYY');
   }
 
   getHeader(file: IGetCaseFileVm) {
     if (!file?.patient) return file.name;
 
-    return this.getPatientName(file.patient) + ": " + file.name;
+    return this.getPatientName(file.patient) + ': ' + file.name;
   }
 
   getPatientName(patient: IFilesPatientVm) {
-    return (
-      `${Honorific[patient.honorific]} ` +
-      `${patient.firstName} ${patient.lastName}`
-    );
+    return `${Honorific[patient.honorific]} ` + `${patient.firstName} ${patient.lastName}`;
   }
 
   render() {
@@ -53,8 +44,7 @@ class CaseFile extends React.Component<Props> {
             {file.consultations?.map((consult) => (
               <Link to={`/consultations/${consult.id}`} key={file.id}>
                 <List.Item>
-                  Consultation {consult.number}:{" "}
-                  {this.getFormattedDate(consult.date)}
+                  Consultation {consult.number}: {this.getFormattedDate(consult.date)}
                 </List.Item>
               </Link>
             ))}
@@ -78,7 +68,4 @@ class CaseFile extends React.Component<Props> {
 
 const mapStateToProps = (state: ApplicationState) => state.casefile;
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps, CaseFileStore.actionCreators)
-)(CaseFile);
+export default compose(withRouter, connect(mapStateToProps, CaseFileStore.actionCreators))(CaseFile);

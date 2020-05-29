@@ -1,4 +1,4 @@
-import { IUpdateCasefileCommand, IGetCasefileVm } from './../../api/generated';
+import { IUpdateCasefileCommand, IGetCasefileVm } from '../../api/generated';
 import { AppThunkAction } from '../index';
 import * as T from './casefileTypes';
 import casefileService from '../../api/casefileService';

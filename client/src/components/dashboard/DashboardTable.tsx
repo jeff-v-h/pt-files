@@ -1,30 +1,30 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import { compose } from "redux";
-import { Table } from "antd";
-import * as PatientsStore from "../../store/Patients";
-import { ApplicationState } from "../../store";
-import { IPatientVm, IGetPatientVm } from "src/api/generated";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import { Table } from 'antd';
+import * as PatientsStore from '../../stores/Patients';
+import { ApplicationState } from '../../stores';
+import { IPatientVm, IGetPatientVm } from 'src/api/generated';
 import { get } from '../../helpers/apiHelper';
-import { AxiosResponse } from "axios";
+import { AxiosResponse } from 'axios';
 
 const columns = [
   {
-    title: "First Name",
-    dataIndex: "firstName",
-    key: "firstName",
+    title: 'First Name',
+    dataIndex: 'firstName',
+    key: 'firstName'
   },
   {
-    title: "Last Name",
-    dataIndex: "lastName",
-    key: "lastName",
+    title: 'Last Name',
+    dataIndex: 'lastName',
+    key: 'lastName'
   },
   {
-    title: "Date of Birth",
-    dataIndex: "dob",
-    key: "dob",
-  },
+    title: 'Date of Birth',
+    dataIndex: 'dob',
+    key: 'dob'
+  }
 ];
 
 interface RowData {
@@ -34,9 +34,7 @@ interface RowData {
   dob: string;
 }
 
-type Props = PatientsStore.PatientsState &
-  typeof PatientsStore.actionCreators &
-  RouteComponentProps<{}>;
+type Props = PatientsStore.PatientsState & typeof PatientsStore.actionCreators & RouteComponentProps<{}>;
 
 class DashboardTable extends React.Component<Props> {
   componentDidMount() {
@@ -64,7 +62,7 @@ class DashboardTable extends React.Component<Props> {
       key: patient.id,
       firstName: patient.firstName,
       lastName: patient.lastName,
-      dob: patient.dob,
+      dob: patient.dob
     }));
   };
 
@@ -73,7 +71,7 @@ class DashboardTable extends React.Component<Props> {
       onClick: (event: React.MouseEvent) => {
         const { history } = this.props;
         history.push(`/patients/${patientRow.key}`);
-      },
+      }
     };
   };
 }

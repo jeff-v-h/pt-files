@@ -1,4 +1,4 @@
-import * as G from './../../api/generated';
+import * as G from '../../api/generated';
 import { Action } from 'redux';
 import { TreatmentsAndPlans } from '../../models/consultationModels';
 

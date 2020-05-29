@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from './helpers/history';
-import configureStore from './store/configureStore';
+import configureStore from './stores/configureStore';
 import 'antd/dist/antd.less';
 import App from './App';
 

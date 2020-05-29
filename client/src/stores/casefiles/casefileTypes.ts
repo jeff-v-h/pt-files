@@ -1,4 +1,4 @@
-import { IUpdateCasefileCommand, IGetCasefileVm } from './../../api/generated';
+import { IUpdateCasefileCommand, IGetCasefileVm } from '../../api/generated';
 import { Action } from 'redux';
 
 export const C = {

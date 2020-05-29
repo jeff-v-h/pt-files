@@ -1,16 +1,16 @@
-import * as React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import style from "./consultation.scss";
-import Subjective from "./Subjective";
-import { getParsedUrlId, ConsultPart } from "../../helpers/utils";
-import { RadioChangeEvent } from "antd/lib/radio";
-import NavPills from "./NavPills";
-import Objective from "./Objective";
-import * as ConsultationStore from "../../store/Consultation";
-import { ApplicationState } from "../../store";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import TreatmentsAndPlan from "./TreatmentsAndPlan";
+import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import style from './consultation.scss';
+import Subjective from './Subjective';
+import { getParsedUrlId, ConsultPart } from '../../helpers/utils';
+import { RadioChangeEvent } from 'antd/lib/radio';
+import NavPills from './NavPills';
+import Objective from './Objective';
+import * as ConsultationStore from '../../stores/Consultation';
+import { ApplicationState } from '../../stores';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import TreatmentsAndPlan from './TreatmentsAndPlan';
 
 type Props = ConsultationStore.ConsultationState &
   typeof ConsultationStore.actionCreators &
@@ -24,7 +24,7 @@ type State = {
 class Consultation extends React.Component<Props, State> {
   state = {
     consultId: this.getUrlConsultId(),
-    display: ConsultPart.Subjective,
+    display: ConsultPart.Subjective
   };
 
   componentDidMount() {

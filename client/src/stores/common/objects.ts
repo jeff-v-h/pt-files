@@ -1,4 +1,4 @@
-import { ISubjectiveAssessmentVm, IObjectiveAssessmentVm } from './../../api/generated';
+import { ISubjectiveAssessmentVm, IObjectiveAssessmentVm } from '../../api/generated';
 
 export const emptySubjective: ISubjectiveAssessmentVm = {
   id: 0,

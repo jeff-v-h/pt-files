@@ -1,4 +1,4 @@
-import { IUpdatePatientCommand } from './../../api/generated';
+import { IUpdatePatientCommand } from '../../api/generated';
 import { AppThunkAction } from '../index';
 import * as T from './patientTypes';
 import patientService from '../../api/patientService';

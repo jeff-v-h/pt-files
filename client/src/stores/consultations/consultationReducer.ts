@@ -1,4 +1,4 @@
-import { emptySubjective, emptyObjective } from './../common/objects';
+import { emptySubjective, emptyObjective } from '../common/objects';
 import { Reducer } from 'redux';
 import * as T from './consultationTypes';
 

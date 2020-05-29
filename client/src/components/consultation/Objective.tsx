@@ -1,19 +1,17 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { compose } from "redux";
-import * as ConsultationStore from "../../store/Consultation";
-import { ApplicationState } from "../../store";
-import { Form, Button } from "antd";
-import FormTextArea from "../common/FormTextArea";
-import style from "./formCommon.scss";
-import { formLayout, tailLayout } from "../../helpers/formHelper";
-import { FormInstance } from "antd/lib/form";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import * as ConsultationStore from '../../stores/Consultation';
+import { ApplicationState } from '../../stores';
+import { Form, Button } from 'antd';
+import FormTextArea from '../common/FormTextArea';
+import style from './formCommon.scss';
+import { formLayout, tailLayout } from '../../helpers/formHelper';
+import { FormInstance } from 'antd/lib/form';
 
 type ParentProps = { consultId: number };
-type Props = ConsultationStore.ConsultationState &
-  typeof ConsultationStore.actionCreators &
-  ParentProps;
+type Props = ConsultationStore.ConsultationState & typeof ConsultationStore.actionCreators & ParentProps;
 
 class Objective extends React.Component<Props> {
   formRef: React.RefObject<FormInstance> = React.createRef();
@@ -49,17 +47,11 @@ class Objective extends React.Component<Props> {
 
     const initialValues = {
       remember: true,
-      ...objectiveAssessment,
+      ...objectiveAssessment
     };
 
     return (
-      <Form
-        {...formLayout}
-        ref={this.formRef}
-        name="objective"
-        initialValues={initialValues}
-        onFinish={this.onSubmit}
-      >
+      <Form {...formLayout} ref={this.formRef} name="objective" initialValues={initialValues} onFinish={this.onSubmit}>
         <FormTextArea label="Observation" name="observation" />
         <FormTextArea label="Active" name="active" />
         <FormTextArea label="Passive" name="passive" />

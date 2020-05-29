@@ -1,19 +1,17 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { compose } from "redux";
-import * as ConsultationStore from "../../store/Consultation";
-import { ApplicationState } from "../../store";
-import { Form, Button } from "antd";
-import FormTextArea from "../common/FormTextArea";
-import { FormInstance } from "antd/lib/form";
-import style from "./formCommon.scss";
-import { formLayout, tailLayout } from "../../helpers/formHelper";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import * as ConsultationStore from '../../stores/Consultation';
+import { ApplicationState } from '../../stores';
+import { Form, Button } from 'antd';
+import FormTextArea from '../common/FormTextArea';
+import { FormInstance } from 'antd/lib/form';
+import style from './formCommon.scss';
+import { formLayout, tailLayout } from '../../helpers/formHelper';
 
 type ParentProps = { consultId: number };
-type Props = ConsultationStore.ConsultationState &
-  typeof ConsultationStore.actionCreators &
-  ParentProps;
+type Props = ConsultationStore.ConsultationState & typeof ConsultationStore.actionCreators & ParentProps;
 
 class TreatmentsAndPlan extends React.Component<Props> {
   formRef: React.RefObject<FormInstance> = React.createRef();
@@ -27,8 +25,8 @@ class TreatmentsAndPlan extends React.Component<Props> {
     if (this.formRef.current) {
       const { getFieldValue } = this.formRef.current;
       modifyTreatmentsAndPlans({
-        treatments: getFieldValue("treatments"),
-        plans: getFieldValue("plans"),
+        treatments: getFieldValue('treatments'),
+        plans: getFieldValue('plans')
       });
     }
   };
@@ -45,17 +43,11 @@ class TreatmentsAndPlan extends React.Component<Props> {
     const initialValues = {
       remember: true,
       treatments,
-      plans,
+      plans
     };
 
     return (
-      <Form
-        {...formLayout}
-        ref={this.formRef}
-        name="treatments"
-        initialValues={initialValues}
-        onFinish={this.onSubmit}
-      >
+      <Form {...formLayout} ref={this.formRef} name="treatments" initialValues={initialValues} onFinish={this.onSubmit}>
         <FormTextArea label="Treatments" name="treatments" />
         <FormTextArea label="Plan" name="plans" />
         <Form.Item {...tailLayout}>
