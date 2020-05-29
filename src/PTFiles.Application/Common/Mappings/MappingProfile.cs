@@ -15,12 +15,7 @@ namespace PTFiles.Application.Common.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<List<Patient>, GetPatientsVm>()
-                .ForMember(d => d.Patients, opt => opt.MapFrom(s => s));
-            CreateMap<Patient, PatientVm>();
-
             CreateMap<Patient, GetPatientVm>();
-            CreateMap<Casefile, PatientCasefileVm>();
 
             CreateMap<Casefile, GetCasefileVm>();
             CreateMap<Consultation, ConsultVm>();

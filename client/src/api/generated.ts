@@ -127,17 +127,6 @@ export interface ICreateConsultationCommand {
 export interface IGetObjectiveAssessmentVm extends IObjectiveAssessmentVm {
 }
 
-export interface IGetPatientsVm {
-    patients: IPatientVm[];
-}
-
-export interface IPatientVm {
-    id: number;
-    firstName: string;
-    lastName: string;
-    dob: string;
-}
-
 export interface IPersonVm {
     id: number;
     honorific: Honorific;
@@ -153,12 +142,6 @@ export interface IPersonVm {
 
 export interface IGetPatientVm extends IPersonVm {
     occupation: string;
-    casefiles: IPatientCasefileVm[];
-}
-
-export interface IPatientCasefileVm {
-    id: number;
-    name: string;
 }
 
 /** 0 = PreferNotToSay 1 = Male 2 = Female 3 = Other */

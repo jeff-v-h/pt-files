@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PTFiles.Application.Features.Patients.CreatePatient;
 using PTFiles.Application.Features.Patients.UpdatePatient;
 using PTFiles.Application.Features.Patients.DeletePatient;
+using System.Collections.Generic;
 
 namespace PTFiles.Web.Controllers
 {
@@ -12,7 +13,7 @@ namespace PTFiles.Web.Controllers
     public class PatientsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<GetPatientsVm>> Get()
+        public async Task<ActionResult<List<GetPatientVm>>> Get()
         {
             return await Mediator.Send(new GetPatientsQuery());
         }

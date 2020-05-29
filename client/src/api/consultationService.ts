@@ -53,7 +53,6 @@ class ConsultationService extends ApiService {
       const url = `${apiUrl}/consultations/${id}`;
       const resp = (await this.delete(url)) as AxiosResponse<void>;
       message.success('Consultation deleted');
-      return resp.data;
     } catch (e) {
       return this.handleRequestError(e);
     }
