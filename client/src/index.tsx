@@ -6,6 +6,7 @@ import history from './helpers/history';
 import configureStore from './stores/configureStore';
 import 'antd/dist/antd.less';
 import App from './App';
+import './main.css';
 
 const store = configureStore(history);
 

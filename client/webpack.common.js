@@ -11,10 +11,12 @@ const webpack = require('webpack');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
-// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function getOutputDir(environment) {
-  return environment === 'production' ? pathHelper('../src/PTFiles.Web/wwwroot') : pathHelper('dist');
+  return environment === 'production'
+    ? pathHelper('../src/PTFiles.Web/wwwroot')
+    : pathHelper('dist');
 }
 
 function getEnvionmentVariableKeys(env) {
@@ -70,23 +72,6 @@ module.exports = function (env) {
           ]
         },
         {
-          test: /\.scss$/,
-          include: [pathHelper('src')],
-          use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                modules: {
-                  localIdentName: '[local]-[hash:base64:5]'
-                },
-                importLoaders: 1
-              }
-            },
-            'sass-loader'
-          ]
-        },
-        {
           test: /\.less$/,
           use: [
             {
@@ -111,7 +96,7 @@ module.exports = function (env) {
       ]
     },
     plugins: [
-      // new CleanWebpackPlugin(["dist"]),
+      new CleanWebpackPlugin(),
       new HtmlWebPackPlugin({
         template: './public/index.html',
         filename: './index.html',

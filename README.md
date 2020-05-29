@@ -37,7 +37,7 @@ The TypeScript api models are automatically generated/updated every time the bac
 
 1. Navigate to client project from root `cd client`.
 2. Install dependencies `npm install`.
-3. Run the frontend client `npm start`.
+3. Run the frontend client `npm start`. (It may be necessary to `npm rebuild node-sass` beforehand)
 4. Visit [localhost:3000](http://localhost:3000) in your browser.
 
 ## Production
