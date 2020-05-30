@@ -110,9 +110,12 @@ $error-height: 20rem;
   flex-grow: 1;
 }
 
-.honorificSelect,
+.honorificSelect {
+  width: 90rem;
+}
+
 .genderSelect {
-  width: 85rem;
+  width: 140rem;
 }
 
 .registerTypeSelect {

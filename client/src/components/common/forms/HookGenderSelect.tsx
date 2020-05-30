@@ -12,15 +12,17 @@ interface Props {
 }
 
 function HookGenderSelect({ control }: Props) {
+  const genderStrings = Object.values(Gender).filter((v) => typeof v === 'string');
+
   return (
     <HookSelectContainer>
       <label className={style.hookInputLabel}>Gender:</label>
       <Controller
         as={
           <Select className={style.genderSelect}>
-            {Object.values(Gender).map((gender) => (
-              <Option key={gender} value={gender}>
-                {gender}
+            {genderStrings.map((g, i) => (
+              <Option key={g} value={i}>
+                {g === Gender[Gender.Other] ? 'Other/Unspecified' : g}
               </Option>
             ))}
           </Select>

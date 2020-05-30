@@ -13,6 +13,8 @@ interface Props {
 }
 
 function HookHonorificSelect({ control, onChange }: Props) {
+  const titleStrings = Object.values(Honorific).filter((v) => typeof v === 'string');
+
   return (
     <HookSelectContainer>
       <label className={style.hookSelectLabel} htmlFor="honorific">
@@ -21,9 +23,9 @@ function HookHonorificSelect({ control, onChange }: Props) {
       <Controller
         as={
           <Select id="honorific" className={style.honorificSelect}>
-            {Object.keys(Honorific).map((title) => (
-              <Option key={title} value={title}>
-                {title}
+            {titleStrings.map((t, i) => (
+              <Option key={t} value={i}>
+                {t === Honorific[Honorific.NoTitle] ? 'No Title' : t}
               </Option>
             ))}
           </Select>

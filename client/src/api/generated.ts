@@ -127,12 +127,11 @@ export enum Honorific {
     Prof = 11,
 }
 
-/** 0 = PreferNotToSay 1 = Male 2 = Female 3 = Other */
+/** 0 = Male 1 = Female 2 = Other */
 export enum Gender {
-    PreferNotToSay = 0,
-    Male = 1,
-    Female = 2,
-    Other = 3,
+    Male = 0,
+    Female = 1,
+    Other = 2,
 }
 
 export interface ICreatePatientCommand {
