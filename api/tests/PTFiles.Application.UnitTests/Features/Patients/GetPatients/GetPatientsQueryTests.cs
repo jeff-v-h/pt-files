@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using FluentAssertions;
+using PTFiles.Application.Features.Patients.GetPatient;
 using PTFiles.Application.Features.Patients.GetPatients;
 using PTFiles.Persistence;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -29,8 +31,8 @@ namespace PTFiles.Application.UnitTests.Features.Patients.GetPatients
 
             var result = await handler.Handle(query, CancellationToken.None);
 
-            result.Should().BeOfType<GetPatientsVm>();
-            result.Patients.Count.Should().Be(2);
+            result.Should().BeOfType<List<GetPatientVm>>();
+            result.Count.Should().Be(2);
         }
     }
 }

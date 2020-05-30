@@ -20,7 +20,9 @@ class PatientService extends ApiService {
   getPatients = async (): Promise<G.IGetPatientVm[]> => {
     try {
       const url = `${apiUrl}/patients`;
+      console.log('get patients url', url);
       const resp = (await this.get(url)) as AxiosResponse<G.IGetPatientVm[]>;
+      console.log('getPatients return data', resp.data);
       return resp.data;
     } catch (e) {
       return this.handleRequestError(e);
