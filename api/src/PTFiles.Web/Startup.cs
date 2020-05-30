@@ -71,9 +71,7 @@ namespace PTFiles.Web
             }
 
             app.UseCustomExceptionHandler();
-            //app.UseHttpsRedirection();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            app.UseHttpsRedirection();
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
