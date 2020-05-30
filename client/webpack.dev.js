@@ -2,6 +2,7 @@ const common = require('./webpack.common.js');
 const merge = require('webpack-merge');
 const { pathHelper, getVendorName } = require('./buildHelpers');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = function (env) {
   return merge(common(env), {
@@ -54,6 +55,11 @@ module.exports = function (env) {
         filename: '[name].css',
         chunkFilename: `${getVendorName(env.ENVIRONMENT)}.css`,
         ignoreOrder: true
+      }),
+      new Dotenv({
+        path: env.docker ? './.env.docker.dev' : './.env.development',
+        allowEmptyValues: true,
+        safe: true
       })
     ]
   });

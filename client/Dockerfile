@@ -1,9 +1,9 @@
-FROM node:13.12.0-alpine
+FROM node:14.2.0-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN npm run build:docker
 
 FROM nginx
 EXPOSE 3000

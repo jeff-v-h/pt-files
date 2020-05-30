@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 var TerserPlugin = require('terser-webpack-plugin');
 const { pathHelper, getVendorName } = require('./buildHelpers');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = function (env) {
   return merge(common(env), {
@@ -35,6 +36,11 @@ module.exports = function (env) {
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
         chunkFilename: `${getVendorName(env.ENVIRONMENT)}.[contenthash].css`
+      }),
+      new Dotenv({
+        path: env.docker ? './.env.docker.prod' : './.env',
+        allowEmptyValues: true,
+        safe: true
       })
     ],
     optimization: {
