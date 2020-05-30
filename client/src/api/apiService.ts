@@ -11,7 +11,11 @@ export class ApiService {
     }
   };
 
-  get(url: string, token?: string, showDefaultErrorMsg: boolean = true): Promise<AxiosResponse | AxiosError> {
+  get(
+    url: string,
+    token?: string,
+    showDefaultErrorMsg: boolean = true
+  ): Promise<AxiosResponse | AxiosError> {
     const config = getConfig(token);
     return axios.get(url, config).catch(handleError(showDefaultErrorMsg));
   }
@@ -36,7 +40,11 @@ export class ApiService {
     return axios.put(url, payload, config).catch(handleError(showDefaultErrorMsg));
   }
 
-  delete(url: string, token?: string, showDefaultErrorMsg: boolean = true): Promise<AxiosResponse | AxiosError> {
+  delete(
+    url: string,
+    token?: string,
+    showDefaultErrorMsg: boolean = true
+  ): Promise<AxiosResponse | AxiosError> {
     const config = getConfig(token);
     return axios.delete(url, config).catch(handleError(showDefaultErrorMsg));
   }
@@ -57,7 +65,7 @@ const handleError = (showDefaultErrorMsg: boolean) => (e: AxiosError) => {
   if (showDefaultErrorMsg) {
     return Promise.reject(defaultErrorMessage(e));
   }
-  const msg = e.response?.data?.error ?? defaultErrorMessage(e);
+  const msg = e.response?.data?.errors ? e.response.data.title : defaultErrorMessage(e);
   return Promise.reject(msg);
 };
 

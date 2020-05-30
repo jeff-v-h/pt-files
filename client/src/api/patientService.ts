@@ -40,7 +40,7 @@ class PatientService extends ApiService {
   updatePatient = async (id: number, patient: G.IUpdatePatientCommand): Promise<void> => {
     try {
       const url = `${apiUrl}/patients/${id}`;
-      await this.put(url, patient);
+      await this.put(url, patient, undefined, false);
       message.success('Patient updated');
     } catch (e) {
       return this.handleRequestError(e);

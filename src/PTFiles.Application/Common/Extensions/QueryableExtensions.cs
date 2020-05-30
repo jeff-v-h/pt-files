@@ -23,6 +23,16 @@ namespace PTFiles.Application.Common.Extensions
                 throw new NotFoundException(resourceName, key);
             }
             return result;
+        }    
+        
+        public static async Task<T> FirstOrNotFoundAsync<T>(this IQueryable<T> source, string resourceName, object key)
+        {
+            var result = await source.FirstOrDefaultAsync();
+            if (result == null || result.Equals(default(T)!))
+            {
+                throw new NotFoundException(resourceName, key);
+            }
+            return result;
         }
 
 

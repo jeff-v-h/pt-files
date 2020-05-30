@@ -42,8 +42,8 @@ class PatientPage extends React.Component<Props, State> {
 
   save = (values: PatientBaseForm) => {
     const { id, createPatient, updatePatient } = this.props;
-    const dob = values.dob?.format() ?? '';
-
+    const dob = values.dob?.format('YYYY-MM-DD') ?? '';
+    console.log(dob);
     if (this.state.isNew) return createPatient({ ...values, dob });
     updatePatient(id, { ...values, id, dob });
   };
@@ -93,7 +93,13 @@ class PatientPage extends React.Component<Props, State> {
             <Button danger icon={<DeleteOutlined />} onClick={this.showDelete} />
           </div>
         )}
-        <PatientForm data={data} onSubmit={this.save} isSaving={isFetching} isNew={isNew} error={error} />
+        <PatientForm
+          data={data}
+          onSubmit={this.save}
+          isSaving={isFetching}
+          isNew={isNew}
+          error={error}
+        />
       </>
     );
   }
