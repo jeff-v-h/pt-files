@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace PTFiles.Web.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("")]
     public class SubjectiveAssessmentsController : ApiControllerBase
     {
         [HttpGet("consultations/{consultationId}/subjective")]

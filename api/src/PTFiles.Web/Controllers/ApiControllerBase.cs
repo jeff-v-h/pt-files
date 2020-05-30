@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace PTFiles.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public abstract class ApiControllerBase : ControllerBase
     {
