@@ -15,10 +15,11 @@ import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 const mapStateToProps = (state: ApplicationState) => state.casefile;
 const connector = connect(mapStateToProps, casefileActions);
 
-type Props = ConnectedProps<typeof connector> & RouteComponentProps<{ patientId: string; casefileId: string }>;
+type Props = ConnectedProps<typeof connector> &
+  RouteComponentProps<{ patientId: string; casefileId: string }>;
 type State = { isNew: boolean };
 
-class CasefilePage extends React.Component<Props, State> {
+class Casefile extends React.Component<Props, State> {
   state = {
     isNew: this.props.match.params.casefileId === 'new'
   };
@@ -27,7 +28,9 @@ class CasefilePage extends React.Component<Props, State> {
     const { match, createCasefile, updateCasefile } = this.props;
     const casefileId = parseInt(match.params.casefileId);
     values.patientId = parseInt(match.params.patientId);
-    this.state.isNew ? createCasefile(values) : updateCasefile(casefileId, { ...values, id: casefileId });
+    this.state.isNew
+      ? createCasefile(values)
+      : updateCasefile(casefileId, { ...values, id: casefileId });
   };
 
   showDelete = () => {
@@ -51,7 +54,14 @@ class CasefilePage extends React.Component<Props, State> {
         <PatientInfo />
         {!isNew && <CasefileInfo />}
         <div className={style.casefileSection}>
-          {!isNew && <Button danger icon={<DeleteOutlined />} onClick={this.showDelete} style={{ float: 'right' }} />}
+          {!isNew && (
+            <Button
+              danger
+              icon={<DeleteOutlined />}
+              onClick={this.showDelete}
+              style={{ float: 'right' }}
+            />
+          )}
           <CasefileForm onSubmit={this.onSubmit} isSaving={this.props.isFetching} isNew={isNew} />
         </div>
       </>
@@ -59,4 +69,4 @@ class CasefilePage extends React.Component<Props, State> {
   }
 }
 
-export default compose<React.ComponentType>(withRouter, connector)(CasefilePage);
+export default compose<React.ComponentType>(withRouter, connector)(Casefile);
