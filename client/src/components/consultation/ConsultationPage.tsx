@@ -14,6 +14,7 @@ import ObjectiveForm from './ObjectiveForm';
 import moment from 'moment';
 import { DatePicker, Button, Modal } from 'antd';
 import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import * as G from '../../api/generated';
 
 const mapStateToProps = (state: ApplicationState) => state.consultation;
 const connector = connect(mapStateToProps, consultActions);
@@ -73,7 +74,6 @@ class ConsultationPage extends React.Component<Props, State> {
   selectSection = (display: ConsultPart) => this.setState({ display });
 
   renderConsultSection = (consultPart: ConsultPart) => {
-    const { modifySubjective, modifyObjective, modifyTreatmentsAndPlans } = this.props;
     const { subjectiveAssessment, objectiveAssessment, treatments, plans, id } = this.props;
 
     switch (consultPart) {
@@ -84,7 +84,7 @@ class ConsultationPage extends React.Component<Props, State> {
             data={data}
             display={consultPart}
             changeSection={this.selectSection}
-            saveValues={modifySubjective}
+            saveValues={this.modifySubjective}
           />
         );
       case ConsultPart.Objective:
@@ -93,7 +93,7 @@ class ConsultationPage extends React.Component<Props, State> {
             data={objectiveAssessment}
             display={consultPart}
             changeSection={this.selectSection}
-            saveValues={modifyObjective}
+            saveValues={this.modifyObjective}
           />
         );
       default:
@@ -102,16 +102,27 @@ class ConsultationPage extends React.Component<Props, State> {
             data={{ treatments, plans }}
             display={consultPart}
             changeSection={this.selectSection}
-            saveValues={modifyTreatmentsAndPlans}
+            saveValues={this.props.modifyTreatmentsAndPlans}
             createConsult={this.onSubmit}
           />
         );
     }
   };
 
+  modifySubjective = (subjective: G.IGetSubjectiveAssessmentVm) => {
+    const { id, consultationId } = this.props.subjectiveAssessment;
+    return this.props.modifySubjective({ ...subjective, id, consultationId });
+  };
+
+  modifyObjective = (subjective: G.IGetObjectiveAssessmentVm) => {
+    const { id, consultationId } = this.props.objectiveAssessment;
+    return this.props.modifyObjective({ ...subjective, id, consultationId });
+  };
+
   changeDate = (date: moment.Moment | null) => date && this.props.modifyDate(date.format());
 
-  getDate = (date: string) => (!date && this.state.isNewConsult ? moment() : !date ? undefined : moment(date));
+  getDate = (date: string) =>
+    !date && this.state.isNewConsult ? moment() : !date ? undefined : moment(date);
 
   showDelete = () => {
     const { deleteConsult, id } = this.props;

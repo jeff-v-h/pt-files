@@ -7,11 +7,11 @@ import { keys } from '../helpers/keys';
 const { apiUrl } = keys;
 
 class ConsultationService extends ApiService {
-  async createConsultation(consult: G.ICreateConsultationCommand): Promise<G.IGetConsultationVm> {
+  async createConsultation(consult: G.ICreateConsultationCommand): Promise<number> {
     try {
       const url = `${apiUrl}/consultations`;
       const resp = (await this.post(url, consult)) as AxiosResponse<number>;
-      return { ...consult, id: resp.data };
+      return resp.data;
     } catch (e) {
       return this.handleRequestError(e);
     }

@@ -30,7 +30,13 @@ const reducer: Reducer<T.ConsultationState> = (
       return { ...state, isFetching: true };
     case C.CREATE_CONSULTATION_SUCCESS:
       obj = action as T.CreateConsultSuccessAction;
-      return { ...state, isFetching: false, ...obj.payload };
+      return {
+        ...state,
+        isFetching: false,
+        ...obj.payload,
+        subjectiveAssessment: state.subjectiveAssessment,
+        objectiveAssessment: state.objectiveAssessment
+      };
     case C.CREATE_CONSULTATION_FAILURE:
       return { ...state, isFetching: false };
 
@@ -56,7 +62,13 @@ const reducer: Reducer<T.ConsultationState> = (
       obj = action as T.UpdateConsultSuccessAction;
       const subjectiveAssessment = obj.payload.subjectiveAssessment ?? emptySubjective;
       const objectiveAssessment = obj.payload.objectiveAssessment ?? emptyObjective;
-      return { ...state, isFetching: false, ...obj.payload, subjectiveAssessment, objectiveAssessment };
+      return {
+        ...state,
+        isFetching: false,
+        ...obj.payload,
+        subjectiveAssessment,
+        objectiveAssessment
+      };
     case C.UPDATE_CONSULTATION_FAILURE:
       return { ...state, isFetching: false };
 

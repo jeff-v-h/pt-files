@@ -9,7 +9,9 @@ import * as G from '../../api/generated';
 const { C } = T;
 //#region simple action creators
 export const getConsultsRequest = () => ({ type: C.GET_CONSULTATIONS_REQUEST });
-export const getConsultsSuccess = (consults: G.IGetConsultationBaseVm[]): T.GetConsultsSuccessAction => {
+export const getConsultsSuccess = (
+  consults: G.IGetConsultationBaseVm[]
+): T.GetConsultsSuccessAction => {
   return { type: C.GET_CONSULTATIONS_SUCCESS, payload: consults };
 };
 export const getConsultsFailure = () => ({ type: C.GET_CONSULTATIONS_FAILURE });
@@ -42,23 +44,25 @@ export const createConsult = (
   dispatch({ type: C.CREATE_CONSULTATION_REQUEST });
 
   try {
-    const consult = await consultationService.createConsultation(newConsult);
+    const id = await consultationService.createConsultation(newConsult);
 
     const appState = getState();
     let patientId = appState.patient?.id;
     if (!patientId) {
-      const casefile = await casefileService.getCasefile(consult.casefileId);
+      const casefile = await casefileService.getCasefile(newConsult.casefileId);
       patientId = casefile.patientId;
     }
 
-    dispatch({ type: C.CREATE_CONSULTATION_SUCCESS, payload: consult });
-    history.push(`/patients/${patientId}/casefiles/${consult.casefileId}/consultations`);
+    dispatch({ type: C.CREATE_CONSULTATION_SUCCESS, payload: newConsult });
+    history.push(`/patients/${patientId}/casefiles/${newConsult.casefileId}/consultations`);
   } catch (e) {
     dispatch({ type: C.CREATE_CONSULTATION_FAILURE });
   }
 };
 
-export const getConsults = (casefileId: number): AppThunkAction<T.GetConsultKnownAction> => async (dispatch) => {
+export const getConsults = (casefileId: number): AppThunkAction<T.GetConsultKnownAction> => async (
+  dispatch
+) => {
   dispatch(getConsultsRequest());
 
   try {
@@ -69,7 +73,10 @@ export const getConsults = (casefileId: number): AppThunkAction<T.GetConsultKnow
   }
 };
 
-export const getConsult = (id: number): AppThunkAction<T.GetConsultKnownAction> => async (dispatch, getState) => {
+export const getConsult = (id: number): AppThunkAction<T.GetConsultKnownAction> => async (
+  dispatch,
+  getState
+) => {
   const appState = getState();
   if (appState?.consultation?.id !== id) {
     dispatch(getConsultRequest());
@@ -97,7 +104,10 @@ export const updateConsult = (
   }
 };
 
-export const deleteConsult = (id: number): AppThunkAction<T.DeleteConsultKnownAction> => async (dispatch, getState) => {
+export const deleteConsult = (id: number): AppThunkAction<T.DeleteConsultKnownAction> => async (
+  dispatch,
+  getState
+) => {
   dispatch({ type: C.DELETE_CONSULTATION_REQUEST });
 
   try {

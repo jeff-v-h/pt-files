@@ -31,7 +31,7 @@ export interface ConsultationState extends G.IGetConsultationVm {
 }
 
 export interface CreateConsultSuccessAction extends Action {
-  payload: G.IGetConsultationVm;
+  payload: G.ICreateConsultationCommand;
 }
 
 export interface GetConsultsSuccessAction extends Action {
