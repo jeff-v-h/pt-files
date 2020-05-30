@@ -8,6 +8,7 @@ import { ApplicationState } from '../../stores/index';
 import PatientsTable from './PatientsTable';
 import { RowData } from './patientRowData';
 import style from './patients.scss';
+import { keys } from '../../helpers/keys';
 
 const mapStateToProps = (state: ApplicationState) => state.patient;
 const connector = connect(mapStateToProps, patientActions);
@@ -19,7 +20,10 @@ class PatientsPage extends React.Component<Props> {
     this.ensureDataFetched();
   }
 
-  ensureDataFetched = () => this.props.getPatients();
+  ensureDataFetched = () => {
+    console.log(keys);
+    this.props.getPatients();
+  };
 
   onRow = (patientRow: RowData) => {
     return {

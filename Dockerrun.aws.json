@@ -1,0 +1,32 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "jeffvh/ptfiles-client",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "api",
+      "image": "jeffvh/ptfiles-api",
+      "hostname": "api",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "jeffvh/ptfiles-nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "api"]
+    }
+  ]
+}

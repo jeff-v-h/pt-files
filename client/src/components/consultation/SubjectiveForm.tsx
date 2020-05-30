@@ -70,7 +70,7 @@ function SubjectiveForm({ data, display, changeSection, saveValues }: Props) {
         </div>
         <div className={style.submitRow}>
           <Button type="primary" htmlType="submit">
-            Objective >
+            Objective {'>'}
           </Button>
         </div>
       </form>

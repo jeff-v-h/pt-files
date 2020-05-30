@@ -43,7 +43,7 @@ class PatientPage extends React.Component<Props, State> {
   save = (values: PatientBaseForm) => {
     const { id, createPatient, updatePatient } = this.props;
     const dob = values.dob?.format('YYYY-MM-DD') ?? '';
-    console.log(dob);
+
     if (this.state.isNew) return createPatient({ ...values, dob });
     updatePatient(id, { ...values, id, dob });
   };

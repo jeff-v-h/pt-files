@@ -32,7 +32,6 @@ namespace PTFiles.Application.UnitTests.Common.Mappings
         [InlineData(typeof(Patient), typeof(GetPatientVm))]
         [InlineData(typeof(Casefile), typeof(GetCasefileVm))]
         [InlineData(typeof(Consultation), typeof(GetConsultationVm))]
-        [InlineData(typeof(List<Patient>), typeof(GetPatientsVm))]
         [InlineData(typeof(SubjectiveAssessment), typeof(GetSubjectiveAssessmentVm))]
         [InlineData(typeof(GetSubjectiveAssessmentVm), typeof(SubjectiveAssessment))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
