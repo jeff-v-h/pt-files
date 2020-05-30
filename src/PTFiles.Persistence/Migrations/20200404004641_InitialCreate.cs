@@ -53,7 +53,7 @@ namespace PTFiles.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CaseFiles",
+                name: "Casefiles",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -64,9 +64,9 @@ namespace PTFiles.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CaseFiles", x => x.Id);
+                    table.PrimaryKey("PK_Casefiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CaseFiles_Patients_PatientId",
+                        name: "FK_Casefiles_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
@@ -79,7 +79,7 @@ namespace PTFiles.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CaseFileId = table.Column<int>(nullable: false),
+                    CasefileId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
                     Number = table.Column<int>(nullable: false),
                     PractitionerId = table.Column<int>(nullable: false),
@@ -90,9 +90,9 @@ namespace PTFiles.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Consultations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Consultations_CaseFiles_CaseFileId",
-                        column: x => x.CaseFileId,
-                        principalTable: "CaseFiles",
+                        name: "FK_Consultations_Casefiles_CasefileId",
+                        column: x => x.CasefileId,
+                        principalTable: "Casefiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -335,14 +335,14 @@ namespace PTFiles.Persistence.Migrations
                 column: "ObjectiveAssessmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CaseFiles_PatientId",
-                table: "CaseFiles",
+                name: "IX_Casefiles_PatientId",
+                table: "Casefiles",
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consultations_CaseFileId",
+                name: "IX_Consultations_CasefileId",
                 table: "Consultations",
-                column: "CaseFileId");
+                column: "CasefileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Consultations_PractitionerId",
@@ -433,7 +433,7 @@ namespace PTFiles.Persistence.Migrations
                 name: "Consultations");
 
             migrationBuilder.DropTable(
-                name: "CaseFiles");
+                name: "Casefiles");
 
             migrationBuilder.DropTable(
                 name: "Practitioners");

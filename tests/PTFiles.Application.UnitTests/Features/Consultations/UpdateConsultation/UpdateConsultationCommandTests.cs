@@ -25,7 +25,6 @@ namespace PTFiles.Application.UnitTests.Features.Consultations.UpdateConsultatio
             var command = new UpdateConsultationCommand
             {
                 Id = 2,
-                Number = 2,
                 Plans = "rv one more time this week"
             };
 

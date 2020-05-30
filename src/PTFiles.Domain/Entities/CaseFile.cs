@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PTFiles.Domain.Entities
 {
-    public class CaseFile
+    public class Casefile
     {
         public int Id { get; set; }
         public int PatientId { get; set; }

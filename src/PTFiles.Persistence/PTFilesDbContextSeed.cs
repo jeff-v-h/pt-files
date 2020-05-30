@@ -25,7 +25,7 @@ namespace PTFiles.Persistence
                 {
                     AddPatients(context);
                     AddPractitioners(context);
-                    AddCaseFiles(context);
+                    AddCasefiles(context);
                     AddConsultations(context);
                     AddSubjectiveAssessments(context);
                     AddObjectiveAssessments(context);
@@ -96,20 +96,20 @@ namespace PTFiles.Persistence
             context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Practitioners OFF");
         }
 
-        private static void AddCaseFiles(PTFilesDbContext context)
+        private static void AddCasefiles(PTFilesDbContext context)
         {
             var now = DateTime.UtcNow;
 
-            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.CaseFiles ON");
-            context.CaseFiles.AddRange(
-                new CaseFile
+            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Casefiles ON");
+            context.Casefiles.AddRange(
+                new Casefile
                 {
                     Id = 1,
                     PatientId = 1,
                     Name = "Lower Back Injury",
                     Created = now
                 },
-                new CaseFile
+                new Casefile
                 {
                     Id = 2,
                     PatientId = 2,
@@ -118,7 +118,7 @@ namespace PTFiles.Persistence
                 }
             );
             context.SaveChanges();
-            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.CaseFiles OFF");
+            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Casefiles OFF");
         }
 
         private static void AddConsultations(PTFilesDbContext context)
@@ -130,9 +130,8 @@ namespace PTFiles.Persistence
                 new Consultation
                 {
                     Id = 1,
-                    CaseFileId = 1,
+                    CasefileId = 1,
                     Date = now,
-                    Number = 1,
                     PractitionerId = 1,
                     SubjectiveId = 1,
                     ObjectiveId = 1,
@@ -145,9 +144,8 @@ namespace PTFiles.Persistence
                 new Consultation
                 {
                     Id = 2,
-                    CaseFileId = 2,
+                    CasefileId = 2,
                     Date = now,
-                    Number = 1,
                     PractitionerId = 1,
                     SubjectiveId = 2,
                     ObjectiveId = 2,

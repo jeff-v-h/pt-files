@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200414012317_SimplifyObjective.cs" />
     <Compile Remove="Migrations\20200414012317_SimplifyObjective.Designer.cs" />
+    <Compile Remove="Migrations\20200529054930_InitCreate2.cs" />
+    <Compile Remove="Migrations\20200529054930_InitCreate2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

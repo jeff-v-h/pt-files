@@ -29,7 +29,7 @@ namespace PTFiles.Application.Features.Patients.GetPatient
             {
                 var patient = await _dbContext.Patients
                     .AsNoTracking()
-                    .Include(p => p.CaseFiles)
+                    .Include(p => p.Casefiles)
                     .Where(p => p.Id == query.Id)
                     .FirstOrNotFoundAsync(nameof(Patient), query.Id, token);
 

@@ -28,7 +28,7 @@ namespace PTFiles.Application.Features.Consultations.GetConsultation
             public async Task<GetConsultationVm> Handle(GetConsultationQuery query, CancellationToken token)
             {
                 var consultation = await _dbContext.Consultations.AsNoTracking()
-                    .Include(c => c.Practitioner)
+                    //.Include(c => c.Practitioner)
                     .Include(c => c.SubjectiveAssessment)
                     .Include(c => c.ObjectiveAssessment)
                     .Where(c => c.Id == query.Id)

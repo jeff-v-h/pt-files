@@ -23,7 +23,7 @@ namespace PTFiles.Application.UnitTests.Features.Consultations.GetConsultation
         }
 
         [Fact]
-        public async Task Handle_ReturnsCorrectVmAndCaseFile()
+        public async Task Handle_ReturnsCorrectVmAndCasefile()
         {
             var query = new GetConsultationQuery { Id = 1 };
 
@@ -33,7 +33,6 @@ namespace PTFiles.Application.UnitTests.Features.Consultations.GetConsultation
 
             result.Should().BeOfType<GetConsultationVm>();
             result.Id.Should().Be(1);
-            result.Number.Should().Be(1);
             result.Plans.Should().Be("rv by end of week. ease into hydrotherapy when able");
         }
 

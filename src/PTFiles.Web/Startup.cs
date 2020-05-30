@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using FluentValidation.AspNetCore;
+using PTFiles.Application.Common.Interfaces.Persistence;
 
 namespace PTFiles.Web
 {
@@ -40,7 +42,9 @@ namespace PTFiles.Web
                     });
             });
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers()
+                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IPTFilesDbContext>())
+                 .AddNewtonsoftJson();
 
             services.AddSwaggerDocument(settings =>
             {

@@ -14,7 +14,7 @@ namespace PTFiles.Persistence
         #region - - - - - - - DbSets - - - - - - -
 
         public DbSet<Patient> Patients { get; set; }
-        public DbSet<CaseFile> CaseFiles { get; set; }
+        public DbSet<Casefile> Casefiles { get; set; }
         public DbSet<Consultation> Consultations { get; set; }
         public DbSet<Practitioner> Practitioners { get; set; }
         public DbSet<SubjectiveAssessment> SubjectiveAssessments { get; set; }

@@ -28,7 +28,7 @@ namespace PTFiles.Application.UnitTests
         {
             AddPatients(context);
             AddPractitioners(context);
-            AddCaseFiles(context);
+            AddCasefiles(context);
             AddConsultations(context);
             AddSubjectiveAssessments(context);
             AddObjectiveAssessments(context);
@@ -90,19 +90,19 @@ namespace PTFiles.Application.UnitTests
             });
         }
 
-        private static void AddCaseFiles(PTFilesDbContext context)
+        private static void AddCasefiles(PTFilesDbContext context)
         {
             var now = DateTime.UtcNow;
 
-            context.CaseFiles.AddRange(
-                new CaseFile
+            context.Casefiles.AddRange(
+                new Casefile
                 {
                     Id = 1,
                     PatientId = 1,
                     Name = "Lower Back Injury",
                     Created = now
                 },
-                new CaseFile
+                new Casefile
                 {
                     Id = 2,
                     PatientId = 2,
@@ -120,9 +120,8 @@ namespace PTFiles.Application.UnitTests
                 new Consultation
                 {
                     Id = 1,
-                    CaseFileId = 1,
+                    CasefileId = 1,
                     Date = now,
-                    Number = 1,
                     PractitionerId = 1,
                     SubjectiveId = 1,
                     ObjectiveId = 1,
@@ -135,9 +134,8 @@ namespace PTFiles.Application.UnitTests
                 new Consultation
                 {
                     Id = 2,
-                    CaseFileId = 2,
+                    CasefileId = 2,
                     Date = now,
-                    Number = 1,
                     PractitionerId = 1,
                     SubjectiveId = 2,
                     ObjectiveId = 2,

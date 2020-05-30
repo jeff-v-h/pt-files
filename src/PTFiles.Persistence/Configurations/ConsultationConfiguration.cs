@@ -11,21 +11,18 @@ namespace PTFiles.Persistence.Configurations
             entity.ToTable("Consultations");
 
             entity.Property(e => e.Id).IsRequired();
-            entity.Property(e => e.CaseFileId).IsRequired();
+            entity.Property(e => e.CasefileId).IsRequired();
 
             entity.Property(e => e.Date)
                 .IsRequired()
                 .HasColumnType("date");
 
-            entity.Property(e => e.Number)
-                .IsRequired();
-
             entity.Property(e => e.PractitionerId)
                 .IsRequired();
 
-            entity.HasOne(e => e.CaseFile)
+            entity.HasOne(e => e.Casefile)
                 .WithMany(e => e.Consultations)
-                .HasForeignKey(e => e.CaseFileId)
+                .HasForeignKey(e => e.CasefileId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(e => e.Practitioner)

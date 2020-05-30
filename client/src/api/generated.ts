@@ -9,62 +9,36 @@
 
 
 
-export interface IGetCaseFileVm {
+export interface IGetCasefileVm {
     id: number;
     name: string;
     created: string;
-    consultations: IConsultVm[];
-    patient: IFilesPatientVm;
+    patientId: number;
 }
 
-export interface IConsultVm {
+export interface ICreateCasefileCommand {
+    patientId: number;
+    name: string;
+}
+
+export interface IUpdateCasefileCommand {
     id: number;
+    patientId: number;
+    name: string;
+}
+
+export interface IGetConsultationBaseVm {
+    id: number;
+    casefileId: number;
     date: string;
-    number: number;
+}
+
+export interface IGetConsultationVm extends IGetConsultationBaseVm {
     practitionerId: number;
-}
-
-export interface IFilesPatientVm {
-    id: number;
-    honorific: Honorific;
-    firstName: string;
-    lastName: string;
-    dob: string;
-    occupation: string;
-}
-
-/** 0 = Mr 1 = Mrs 2 = Miss 3 = Ms 4 = Master 5 = Mx 6 = M 7 = Sir 8 = Madam 9 = Dr 10 = Prof */
-export enum Honorific {
-    Mr = 0,
-    Mrs = 1,
-    Miss = 2,
-    Ms = 3,
-    Master = 4,
-    Mx = 5,
-    M = 6,
-    Sir = 7,
-    Madam = 8,
-    Dr = 9,
-    Prof = 10,
-}
-
-export interface IGetConsultationVm {
-    id: number;
-    caseFileId: number;
-    date: string;
-    number: number;
-    practitioner: IPractitionerVm;
     subjectiveAssessment: ISubjectiveAssessmentVm;
     objectiveAssessment: IObjectiveAssessmentVm;
     treatments: string;
     plans: string;
-}
-
-export interface IPractitionerVm {
-    id: number;
-    firstName: string;
-    lastName: string;
-    jobLevel: string;
 }
 
 export interface ISubjectiveAssessmentVm {
@@ -99,26 +73,50 @@ export interface IObjectiveAssessmentVm {
 export interface IUpdateConsultationCommand {
     id: number;
     date: string;
-    number: number;
-    practitioner: IPractitionerVm | null;
+    practitionerId: number;
+    casefileId: number;
     subjectiveAssessment: ISubjectiveAssessmentVm | null;
     objectiveAssessment: IObjectiveAssessmentVm | null;
     treatments: string;
     plans: string;
 }
 
+export interface ICreateConsultationCommand {
+    date: string;
+    practitionerId: number;
+    casefileId: number;
+    subjectiveAssessment: ICreateConsultationSubjective;
+    objectiveAssessment: ICreateConsultationObjective;
+    treatments: string;
+    plans: string;
+}
+
+export interface ICreateConsultationSubjective {
+    moi: string;
+    currentHistory: string;
+    bodyChart: string;
+    aggravatingFactors: string;
+    easingFactors: string;
+    vas: number | null;
+    pastHistory: string;
+    socialHistory: string;
+    imaging: string;
+    generalHealth: string;
+}
+
+export interface ICreateConsultationObjective {
+    observation: string;
+    active: string;
+    passive: string;
+    resistedIsometric: string;
+    functionalTests: string;
+    neurologicalTests: string;
+    specialTests: string;
+    palpation: string;
+    additional: string;
+}
+
 export interface IGetObjectiveAssessmentVm extends IObjectiveAssessmentVm {
-}
-
-export interface IGetPatientsVm {
-    patients: IPatientVm[];
-}
-
-export interface IPatientVm {
-    id: number;
-    firstName: string;
-    lastName: string;
-    dob: string;
 }
 
 export interface IPersonVm {
@@ -136,20 +134,56 @@ export interface IPersonVm {
 
 export interface IGetPatientVm extends IPersonVm {
     occupation: string;
-    caseFiles: IPatientCaseFileVm[];
 }
 
-export interface IPatientCaseFileVm {
-    id: number;
-    name: string;
+/** 0 = NoTitle 1 = Mr 2 = Mrs 3 = Miss 4 = Ms 5 = Master 6 = Mx 7 = M 8 = Sir 9 = Madam 10 = Dr 11 = Prof */
+export enum Honorific {
+    NoTitle = 0,
+    Mr = 1,
+    Mrs = 2,
+    Miss = 3,
+    Ms = 4,
+    Master = 5,
+    Mx = 6,
+    M = 7,
+    Sir = 8,
+    Madam = 9,
+    Dr = 10,
+    Prof = 11,
 }
 
-/** 0 = PreferNotToSay 1 = Male 2 = Female 3 = Other */
+/** 0 = Male 1 = Female 2 = Other */
 export enum Gender {
-    PreferNotToSay = 0,
-    Male = 1,
-    Female = 2,
-    Other = 3,
+    Male = 0,
+    Female = 1,
+    Other = 2,
+}
+
+export interface ICreatePatientCommand {
+    honorific: Honorific;
+    firstName: string;
+    lastName: string;
+    dob: string;
+    email: string;
+    countryCode: string;
+    homePhone: string;
+    mobilePhone: string;
+    gender: Gender;
+    occupation: string;
+}
+
+export interface IUpdatePatientCommand {
+    id: number;
+    honorific: Honorific;
+    firstName: string;
+    lastName: string;
+    dob: string;
+    email: string;
+    countryCode: string;
+    homePhone: string;
+    mobilePhone: string;
+    gender: Gender;
+    occupation: string;
 }
 
 export interface IGetSubjectiveAssessmentVm extends ISubjectiveAssessmentVm {

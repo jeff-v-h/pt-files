@@ -19,7 +19,7 @@ namespace PTFiles.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PTFiles.Domain.Entities.CaseFile", b =>
+            modelBuilder.Entity("PTFiles.Domain.Entities.Casefile", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,7 +40,7 @@ namespace PTFiles.Persistence.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("CaseFiles");
+                    b.ToTable("Casefiles");
                 });
 
             modelBuilder.Entity("PTFiles.Domain.Entities.Consultation", b =>
@@ -50,14 +50,11 @@ namespace PTFiles.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CaseFileId")
+                    b.Property<int>("CasefileId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
 
                     b.Property<int>("ObjectiveId")
                         .HasColumnType("int");
@@ -76,7 +73,7 @@ namespace PTFiles.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CaseFileId");
+                    b.HasIndex("CasefileId");
 
                     b.HasIndex("PractitionerId");
 
@@ -273,10 +270,10 @@ namespace PTFiles.Persistence.Migrations
                     b.ToTable("SubjectiveAssessments");
                 });
 
-            modelBuilder.Entity("PTFiles.Domain.Entities.CaseFile", b =>
+            modelBuilder.Entity("PTFiles.Domain.Entities.Casefile", b =>
                 {
                     b.HasOne("PTFiles.Domain.Entities.Patient", "Patient")
-                        .WithMany("CaseFiles")
+                        .WithMany("Casefiles")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -284,9 +281,9 @@ namespace PTFiles.Persistence.Migrations
 
             modelBuilder.Entity("PTFiles.Domain.Entities.Consultation", b =>
                 {
-                    b.HasOne("PTFiles.Domain.Entities.CaseFile", "CaseFile")
+                    b.HasOne("PTFiles.Domain.Entities.Casefile", "Casefile")
                         .WithMany("Consultations")
-                        .HasForeignKey("CaseFileId")
+                        .HasForeignKey("CasefileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
