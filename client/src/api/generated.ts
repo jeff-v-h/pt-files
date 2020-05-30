@@ -85,10 +85,35 @@ export interface ICreateConsultationCommand {
     date: string;
     practitionerId: number;
     casefileId: number;
-    subjectiveAssessment: ISubjectiveAssessmentVm;
-    objectiveAssessment: IObjectiveAssessmentVm;
+    subjectiveAssessment: ICreateConsultationSubjective;
+    objectiveAssessment: ICreateConsultationObjective;
     treatments: string;
     plans: string;
+}
+
+export interface ICreateConsultationSubjective {
+    moi: string;
+    currentHistory: string;
+    bodyChart: string;
+    aggravatingFactors: string;
+    easingFactors: string;
+    vas: number | null;
+    pastHistory: string;
+    socialHistory: string;
+    imaging: string;
+    generalHealth: string;
+}
+
+export interface ICreateConsultationObjective {
+    observation: string;
+    active: string;
+    passive: string;
+    resistedIsometric: string;
+    functionalTests: string;
+    neurologicalTests: string;
+    specialTests: string;
+    palpation: string;
+    additional: string;
 }
 
 export interface IGetObjectiveAssessmentVm extends IObjectiveAssessmentVm {

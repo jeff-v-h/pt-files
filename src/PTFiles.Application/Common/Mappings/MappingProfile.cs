@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using PTFiles.Application.Common.Models;
 using PTFiles.Application.Features.Casefiles.GetCasefile;
+using PTFiles.Application.Features.Consultations.CreateConsultation;
 using PTFiles.Application.Features.Consultations.GetConsultation;
 using PTFiles.Application.Features.ObjectiveAx.GetObjectiveAssessment;
 using PTFiles.Application.Features.Patients.GetPatient;
-using PTFiles.Application.Features.Patients.GetPatients;
 using PTFiles.Application.Features.SubjectiveAx.GetSubjectiveAssessment;
 using PTFiles.Domain.Entities;
-using System.Collections.Generic;
 
 namespace PTFiles.Application.Common.Mappings
 {
@@ -32,6 +31,9 @@ namespace PTFiles.Application.Common.Mappings
             CreateMap<SubjectiveAssessment, GetSubjectiveAssessmentVm>();
 
             CreateMap<ObjectiveAssessment, GetObjectiveAssessmentVm>();
+
+            CreateMap<CreateConsultationSubjective, SubjectiveAssessment>();
+            CreateMap<CreateConsultationObjective, ObjectiveAssessment>();
         }
     }
 }
