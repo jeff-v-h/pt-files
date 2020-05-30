@@ -38,7 +38,11 @@ module.exports = function (env) {
         chunkFilename: `${getVendorName(env.ENVIRONMENT)}.[contenthash].css`
       }),
       new Dotenv({
-        path: env.docker ? './.env.docker.prod' : './.env',
+        path: env.docker
+          ? './.env.docker.prod'
+          : env.dockerlocal
+          ? './.env.docker.local'
+          : './.env',
         allowEmptyValues: true,
         safe: true
       })
