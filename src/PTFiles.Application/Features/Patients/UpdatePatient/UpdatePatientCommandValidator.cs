@@ -1,6 +1,9 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using PTFiles.Application.Common.Extensions;
 using PTFiles.Application.Common.Interfaces.Persistence;
+using PTFiles.Domain.Entities;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +30,7 @@ namespace PTFiles.Application.Features.Patients.UpdatePatient
 
             RuleFor(v => v.Email)
                 .MaximumLength(255).WithMessage("Email must not exceed 255 characters.")
-                .MustAsync(BeUniqueEmailIfExists).WithMessage("The specified email already exists.");
+                .MustAsync(BeUniqueEmailIfDifferent).WithMessage("The specified email already exists.");
 
             RuleFor(v => v.HomePhone)
                 .MaximumLength(40).WithMessage("Home phone must not exceed 40 characters.");
@@ -39,10 +42,16 @@ namespace PTFiles.Application.Features.Patients.UpdatePatient
                 .MaximumLength(50).WithMessage("Occupation must not exceed 50 characters.");
         }
 
-        public async Task<bool> BeUniqueEmailIfExists(string email, CancellationToken cancelToken)
+        public async Task<bool> BeUniqueEmailIfDifferent(UpdatePatientCommand pt, string email, CancellationToken cancelToken)
         {
             if (email == null || email.Length == 0) return true;
 
+            var patient = await _context.Patients.Where(p => p.Id == pt.Id)
+                    .FirstOrNotFoundAsync(nameof(Patient), pt.Id);
+
+            if (patient.Email == email) return true;
+
+            // Only cross check across all patients if the email has changed
             return await _context.Patients
                 .AllAsync(l => l.Email != email);
         }

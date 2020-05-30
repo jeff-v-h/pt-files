@@ -14,8 +14,8 @@ namespace PTFiles.Application.Features.Consultations.CreateConsultation
         public DateTime Date { get; set; }
         public int PractitionerId { get; set; }
         public int CasefileId { get; set; }
-        public SubjectiveAssessmentVm SubjectiveAssessment { get; set; }
-        public ObjectiveAssessmentVm ObjectiveAssessment { get; set; }
+        public CreateConsultationSubjective SubjectiveAssessment { get; set; }
+        public CreateConsultationObjective ObjectiveAssessment { get; set; }
         public string Treatments { get; set; }
         public string Plans { get; set; }
 

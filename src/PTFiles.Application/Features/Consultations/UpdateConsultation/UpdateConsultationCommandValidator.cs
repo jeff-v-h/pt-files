@@ -14,12 +14,6 @@ namespace PTFiles.Application.Features.Consultations.UpdateConsultation
 
             RuleFor(v => v.CasefileId)
                 .NotEmpty().WithMessage("Casefile id is required.");
-
-            RuleFor(v => v.Treatments)
-                .NotEmpty().WithMessage("Treatments property is required."); 
-            
-            RuleFor(v => v.Plans)
-                .NotEmpty().WithMessage("Plans property is required.");
         }
     }
 }
