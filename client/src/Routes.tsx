@@ -6,7 +6,7 @@ import CasefilesPage from './components/casefiles/CasefilesPage';
 import ConsultationPage from './components/consultation/ConsultationPage';
 import ConsultationsPage from './components/consultations/ConsultationsPage';
 import PatientsPage from './components/patients/PatientsPage';
-import Casefile from './components/casefile/Casefile';
+import CasefilePage from './components/casefilepage/CasefilePage';
 
 export default class Routes extends React.Component {
   render() {
@@ -20,7 +20,7 @@ export default class Routes extends React.Component {
           path="/patients/:patientId/casefiles/:casefileId/consultations"
           component={ConsultationsPage}
         />
-        <Route path="/patients/:patientId/casefiles/:casefileId" component={Casefile} />
+        <Route path="/patients/:patientId/casefiles/:casefileId" component={CasefilePage} />
         <Route path="/patients/:patientId/casefiles" component={CasefilesPage} />
         <Route path="/patients/:patientId" component={PatientPage} />
         <Route exact path={['/', '/patients']} component={PatientsPage} />

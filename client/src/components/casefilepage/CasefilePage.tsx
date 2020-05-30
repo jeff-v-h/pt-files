@@ -19,7 +19,7 @@ type Props = ConnectedProps<typeof connector> &
   RouteComponentProps<{ patientId: string; casefileId: string }>;
 type State = { isNew: boolean };
 
-class Casefile extends React.Component<Props, State> {
+class CasefilePage extends React.Component<Props, State> {
   state = {
     isNew: this.props.match.params.casefileId === 'new'
   };
@@ -69,4 +69,4 @@ class Casefile extends React.Component<Props, State> {
   }
 }
 
-export default compose<React.ComponentType>(withRouter, connector)(Casefile);
+export default compose<React.ComponentType>(withRouter, connector)(CasefilePage);
