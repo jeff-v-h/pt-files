@@ -7,6 +7,7 @@ import { ApplicationState } from '../../stores';
 import { Descriptions } from 'antd';
 import style from './patientInfo.scss';
 import { parseDateString } from '../../helpers/utils';
+import { Gender } from '../../api/generated';
 
 const Item = Descriptions.Item;
 
@@ -49,7 +50,7 @@ class PatientInfo extends React.Component<Props> {
             </Link>
           </Item>
           <Item label="DOB">{parseDateString(dob)}</Item>
-          <Item label="Gender">{gender}</Item>
+          <Item label="Gender">{Gender[gender]}</Item>
           <Item label="Occupation">{occupation}</Item>
         </Descriptions>
       </>
