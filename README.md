@@ -18,38 +18,51 @@ A project to practice a combination of React, Redux, TypScript, .NET Core with C
 - Entity Framework Core 3.1
 - SQL Server 2019
 
+#### Additional
+
+- Docker
+
 ### Installation
 
-The TypeScript api models are automatically generated/updated every time the back-end successfully builds. This file (client/src/api/generated.ts) is committed to source control but should it not be up-to-date, it may be necessary to build the backend first.
+The TypeScript api models are automatically generated/updated every time the back-end successfully builds. This created file (client/src/api/generated.ts) is committed to source control but should it not be up-to-date, it may be necessary to build the backend first.
 
-#### Database
+There are two methods of getting up and running, with and without docker. For instructions with docker-compose scroll down to the "With Docker" section.
 
-1. Download SQL Server and ensure the default MSSQLSERVER is present. If you wish to use another SQL server, please chagne the connection string appsetting.development.json
-2. Ensure method CreateAndSeedDbIfNotExists is uncommented to ensure the database schema is created on back-end startup. Uncomment DbContextSeed.Initialise method to seed database.
+#### Without Docker
 
-#### API
+##### Database
+
+1. Download SQL Server and ensure the default MSSQLSERVER is present. If you wish to use another SQL server, please change the connection string in appsetting.development.json
+2. Ensure method CreateAndSeedDbIfNotExists in Program.cs Main method is uncommented to ensure the database schema is created on back-end startup.
+
+##### API
 
 1. Open Solution with Visual Studio.
 2. Target PTFiles.Web and Run project on IIS Express.
 3. A new browser should open up to [swagger](http://localhost:5555/swagger) when successfully built, otherwise open browser to [localhost:5555/swagger)](http://localhost:5555/swagger). It also serves static content from wwwroot if there are front-end built files existing in there. You may navigate to view this static content at [localhost:5555](http://localhost:5555).
 
-#### Client
+##### Client
 
 1. Navigate to client project from root `cd client`.
 2. Install dependencies `npm install`.
 3. Run the frontend client `npm start`. (It may be necessary to `npm rebuild node-sass` beforehand)
 4. Visit [localhost:3000](http://localhost:3000) in your browser.
 
+#### With Docker
+
+Docker Compose tool is used with Nginx reverse proxy to create a multi-container application.
+
+**Note:** Hot module replacement is not setup by default. You will need to uncomment devServer.watchOptions in webpack.dev.js and may need to do additional configuration to get it working.
+
+1. Open command line to the root of the entire project where docker-compose file sits.
+2. Run `docker-compose up`
+3. Open browser to [localhost:3000](http://localhost:3000). If using Windows Home (Docker Toolbox), you may need to visit [192.168.99.100:3000](http://192.168.99.100:3000) (Docker's default ip address) instead.
+
 ## Production
 
-CICD is currently not setup. The following method manually builds and uploads a zip onto AWS.
+CI/CD is currently setup with Travis CI.
 
-1. Build front-end client first: Navigate to client project from root `cd client` and build with `npm run build`. This will build files into src directory's wwwroot folder.
-2. Once front-end is built, navigate back to root `cd ..`.
-3. Build application `dotnet publish -c Release -o publish`. This will create a build the files into a directory named 'publish'. Old files will be replaced if this directory already exists.
-4. Zip the contents of this publish folder by selecting everything inside (Either use command line or use you local machine's zip package). Make sure you zip the inner contents, not the 'publish' directory itself.
-5. Login to AWS and navigate to the correct environment (Please see author for instructions and credentials).
-6. Click 'Upload and Deploy' and select the recently created zip to upload.
+1. Merge/push any changes to master branch to initiate CI/CD process.
 
 ## Authors
 
